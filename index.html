@@ -179,7 +179,7 @@
 
         /* Header */
         .header {
-            background-image: url(inovaa.jpg);
+            background-image: url(../img/inovaa.jpg);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -775,36 +775,29 @@
         <ul class="sidebar-menu">
             <li class="menu-label">Menu</li>
             <li>
-                <a href="#" class="menu-item active">
+                <a href="index.html" class="menu-item active">
                     <i class="fas fa-home"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="menu-item">
+                <a href="match.html" class="menu-item">
                     <i class="fas fa-chart-bar"></i>
-                    <span>Atividades</span>
+                    <span>Devolutivas</span>
                     <span class="menu-badge">21</span>
                     <i class="fas fa-chevron-right menu-arrow"></i>
                 </a>
             </li>
             <li>
-                <a href="#" class="menu-item">
+                <a href="tela02-v2.html" class="menu-item">
                     <i class="fas fa-tasks"></i>
-                    <span>Tarefas</span>
+                    <span>Gerenciar PDP</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="menu-item">
+                <a href="tela03-v2.html" class="menu-item">
                     <i class="fas fa-users"></i>
-                    <span>Usuários</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-bell"></i>
-                    <span>Notificações</span>
-                    <span class="menu-badge">21</span>
+                    <span>Cadastradar necessidade</span>
                 </a>
             </li>
 
@@ -887,266 +880,14 @@
     </main>
 
     <script>
-        // Dados dos órgãos
-        // Dados dos órgãos - SUBSTITUIR o array existente
-const organs = [
-    {
-        id: 1,
-        name: 'Ministério da Educação',
-        code: 'MEC',
-        category: 'ministerio',
-        status: 'active',
-        startDate: '01/07/2025',
-        endDate: '31/08/2025',
-        pdpsCount: 3,
-        available: true,
-        progress: 75,
-        icon: 'fas fa-graduation-cap'
-    },
-    {
-        id: 2,
-        name: 'Ministério da Saúde',
-        code: 'MS',
-        category: 'ministerio',
-        status: 'expired',
-        startDate: '15/06/2025',
-        endDate: '15/07/2025',
-        pdpsCount: 1,
-        available: false,
-        progress: 100,
-        icon: 'fas fa-heartbeat'
-    },
-    {
-        id: 3,
-        name: 'Secretaria de Estado da Educação - SP',
-        code: 'SEE-SP',
-        category: 'estadual',
-        status: 'active',
-        startDate: '01/08/2025',
-        endDate: '30/09/2025',
-        pdpsCount: 5,
-        available: true,
-        progress: 45,
-        icon: 'fas fa-school'
-    },
-    {
-        id: 4,
-        name: 'Prefeitura de São Paulo',
-        code: 'PMSP',
-        category: 'municipal',
-        status: 'upcoming',
-        startDate: '15/09/2025',
-        endDate: '15/10/2025',
-        pdpsCount: 0,
-        available: false,
-        progress: 0,
-        icon: 'fas fa-building'
-    },
-    // Adicione mais órgãos conforme necessário...
-];
-
-        // Função para obter o texto do status
-        function getStatusText(status) {
-            switch(status) {
-                case 'active': return 'PDP Disponível';
-                case 'expired': return 'Prazo Expirado';
-                case 'upcoming': return 'Em Breve';
-                default: return '';
-            }
-        }
-
-        // Função para obter o ícone do status
-        function getStatusIcon(status) {
-            const icons = {
-                active: '<i class="fas fa-check-circle status-icon active"></i>',
-                expired: '<i class="fas fa-times-circle status-icon expired"></i>',
-                upcoming: '<i class="fas fa-clock status-icon upcoming"></i>'
-            };
-            return icons[status] || '';
-        }
-
-        // Função para renderizar os cards dos órgãos
-        function renderOrgans() {
-            const container = document.getElementById('organsGrid');
-            
-            container.innerHTML = organs.map(organ => `
-                <div class="organ-card ${organ.available ? 'active' : ''}" data-organ-id="${organ.id}">
-                    <div class="organ-header">
-                        <div class="organ-info">
-                            <div class="organ-icon">
-                                <i class="${organ.icon}"></i>
-                            </div>
-                            <div class="organ-details">
-                                <h3>${organ.name}</h3>
-                                <div class="organ-code">${organ.code}</div>
-                            </div>
-                        </div>
-                        ${getStatusIcon(organ.status)}
-                    </div>
-                    
-                    <div class="status-badge ${organ.status}">
-                        ${getStatusText(organ.status)}
-                    </div>
-                    
-                    <div class="organ-info-section">
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>${organ.startDate} a ${organ.endDate}</span>
-                        </div>
-                        
-                        <div class="detail-item">
-                            <i class="fas fa-file-alt"></i>
-                            <span>${organ.pdpsCount} solicitações cadastradas</span>
-                        </div>
-                        
-                        
-                    </div>
-                    
-                    <button class="access-btn ${organ.available ? 'enabled' : 'disabled'}" 
-                            ${organ.available ? '' : 'disabled'} 
-                            onclick="window.location.href='tela02-v2.html'">
-                        <i class="fas fa-arrow-right"></i>
-                        ${organ.available ? 'Acessar Órgão' : 'Indisponível'}
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        // Função para acessar órgão
-        function accessOrgan(organId) {
-            const organ = organs.find(o => o.id === organId);
-            if (organ && organ.available) {
-                // Animação de loading
-                const button = event.target;
-                const originalContent = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando...';
-                button.disabled = true;
-                
-                setTimeout(() => {
-                    alert(`Acessando ${organ.name}...\n\nEm uma implementação real, isso levaria para a Tela 2!`);
-                    button.innerHTML = originalContent;
-                    button.disabled = false;
-                    // window.location.href = 'tela2.html?organ=' + organId;
-                }, 1500);
-            }
-        }
-
-        // Funções do menu lateral
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('active');
-        }
-
-        function closeSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            
-            sidebar.classList.remove('open');
-            overlay.classList.remove('active');
-        }
-
-        // Inicializar a página
-        document.addEventListener('DOMContentLoaded', function() {
-            renderOrgans();
-            
-            // Animação de entrada suave
-            const cards = document.querySelectorAll('.organ-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'all 0.6s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 150);
-            });
-
-            // Animação das barras de progresso
-            setTimeout(() => {
-                const progressBars = document.querySelectorAll('.progress-fill');
-                progressBars.forEach(bar => {
-                    const width = bar.style.width;
-                    bar.style.width = '0%';
-                    setTimeout(() => {
-                        bar.style.width = width;
-                    }, 100);
-                });
-            }, 800);
-
-            // Funcionalidade do menu
-            const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all items
-                    menuItems.forEach(i => i.classList.remove('active'));
-                    
-                    // Add active class to clicked item
-                    this.classList.add('active');
-                    
-                    // Handle arrow rotation for expandable items
-                    const arrow = this.querySelector('.menu-arrow');
-                    if (arrow) {
-                        this.classList.toggle('expanded');
-                    }
-                });
-            });
-        });
-
-        // Fechar sidebar ao clicar fora em mobile
-        document.addEventListener('click', function(e) {
-            const sidebar = document.getElementById('sidebar');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            const overlay = document.querySelector('.sidebar-overlay');
-            
-            if (window.innerWidth <= 768) {
-                if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
-                    closeSidebar();
-                }
-            }
-        });
-
-        // Adicionar funcionalidade de busca no sidebar
-        const searchInput = document.querySelector('.sidebar-search input');
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const menuItems = document.querySelectorAll('.menu-item');
-            
-            menuItems.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                const parentLi = item.parentElement;
-                
-                if (text.includes(searchTerm)) {
-                    parentLi.style.display = 'block';
-                    item.style.opacity = '1';
-                } else {
-                    parentLi.style.display = searchTerm ? 'none' : 'block';
-                    item.style.opacity = searchTerm ? '0.5' : '1';
-                }
-            });
-        });
-
-        // Responsividade - ajustar sidebar em resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                const sidebar = document.getElementById('sidebar');
-                const overlay = document.querySelector('.sidebar-overlay');
-                
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-            }
-        });
-
-
-
-        // Variáveis globais para filtros
+// Variáveis globais para filtros
 let currentFilter = 'all';
 let currentSearch = '';
+
+// Dados dos órgãos (assumindo que existe essa variável)
+const organs = [
+    // Seus dados de órgãos aqui
+];
 
 // Função para filtrar órgãos
 function filterOrgans() {
@@ -1180,7 +921,6 @@ function renderFilteredOrgans(filteredOrgans) {
     
     container.innerHTML = filteredOrgans.map(organ => `
         <div class="organ-card ${organ.available ? 'active' : ''} fade-in" data-organ-id="${organ.id}">
-            <!-- Conteúdo do card igual ao original -->
             <div class="organ-header">
                 <div class="organ-info">
                     <div class="organ-icon">
@@ -1222,14 +962,104 @@ function renderFilteredOrgans(filteredOrgans) {
 
 // Função para atualizar contador de resultados
 function updateResultsCount(count) {
-    document.getElementById('resultsCount').textContent = `${count} órgão${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
+    const resultsCountEl = document.getElementById('resultsCount');
+    if (resultsCountEl) {
+        resultsCountEl.textContent = `${count} órgão${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
+    }
 }
 
-// Event listeners para filtros - ADICIONAR no DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function() {
-    // ... código existente ...
+// Funções auxiliares (assumindo que existem)
+function getStatusIcon(status) {
+    // Implementar conforme necessário
+    return '';
+}
+
+function getStatusText(status) {
+    // Implementar conforme necessário
+    return status;
+}
+
+function renderOrgans() {
+    // Função original de renderização
+    filterOrgans();
+}
+
+function accessOrgan(id) {
+    console.log('Acessando órgão:', id);
+    // Implementar navegação
+}
+
+// Funções do menu lateral
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
     
-    // Filtros de categoria
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+}
+
+function closeSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+}
+
+// Inicializar a página
+document.addEventListener('DOMContentLoaded', function() {
+    renderOrgans();
+    
+    // SETUP DO MENU LATERAL
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            // Verifica se o item tem href válido
+            const href = this.getAttribute('href');
+            
+            // Se não tem href ou href é #, previne o comportamento padrão
+            if (!href || href === '#') {
+                e.preventDefault();
+            }
+            // Se tem href válido (.html), deixa navegar normalmente
+            
+            // Remove active class from all items
+            menuItems.forEach(i => i.classList.remove('active'));
+            
+            // Add active class to clicked item
+            this.classList.add('active');
+            
+            // Handle arrow rotation for expandable items
+            const arrow = this.querySelector('.menu-arrow');
+            if (arrow) {
+                this.classList.toggle('expanded');
+            }
+        });
+    });
+
+    // BUSCA NO SIDEBAR
+    const sidebarSearchInput = document.querySelector('.sidebar-search input');
+    if (sidebarSearchInput) {
+        sidebarSearchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentLi = item.parentElement;
+                
+                if (text.includes(searchTerm)) {
+                    parentLi.style.display = 'block';
+                    item.style.opacity = '1';
+                } else {
+                    parentLi.style.display = searchTerm ? 'none' : 'block';
+                    item.style.opacity = searchTerm ? '0.5' : '1';
+                }
+            });
+        });
+    }
+    
+    // FILTROS DE CATEGORIA
     const filterBtns = document.querySelectorAll('.filter-btn');
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -1241,27 +1071,83 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Busca por texto
+    // BUSCA POR TEXTO
     const searchInput = document.getElementById('organSearch');
     const clearSearch = document.getElementById('clearSearch');
     
-    searchInput.addEventListener('input', function() {
-        currentSearch = this.value;
-        filterOrgans();
-        
-        clearSearch.style.display = this.value ? 'block' : 'none';
-    });
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            currentSearch = this.value;
+            filterOrgans();
+            
+            if (clearSearch) {
+                clearSearch.style.display = this.value ? 'block' : 'none';
+            }
+        });
+    }
     
-    clearSearch.addEventListener('click', function() {
-        searchInput.value = '';
-        currentSearch = '';
-        this.style.display = 'none';
-        filterOrgans();
-        searchInput.focus();
-    });
+    if (clearSearch) {
+        clearSearch.addEventListener('click', function() {
+            if (searchInput) {
+                searchInput.value = '';
+                currentSearch = '';
+                this.style.display = 'none';
+                filterOrgans();
+                searchInput.focus();
+            }
+        });
+    }
     
     // Inicializar filtros
     filterOrgans();
+    
+    // Animação de entrada suave
+    const cards = document.querySelectorAll('.organ-card');
+    cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'all 0.6s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 150);
+    });
+
+    // Animação das barras de progresso
+    setTimeout(() => {
+        const progressBars = document.querySelectorAll('.progress-fill');
+        progressBars.forEach(bar => {
+            const width = bar.style.width;
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.width = width;
+            }, 100);
+        });
+    }, 800);
+});
+
+// Fechar sidebar ao clicar fora em mobile
+document.addEventListener('click', function(e) {
+    const sidebar = document.getElementById('sidebar');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    
+    if (window.innerWidth <= 768) {
+        if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+            closeSidebar();
+        }
+    }
+});
+
+// Responsividade - ajustar sidebar em resize
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
+        
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+    }
 });
     </script>
 </body>

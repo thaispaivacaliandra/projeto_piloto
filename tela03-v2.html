@@ -902,37 +902,32 @@
         <ul class="sidebar-menu">
             <li class="menu-label">Menu</li>
             <li>
-                <a href="#" class="menu-item" onclick="goToHome()">
+                <a href="index.html" class="menu-item active">
                     <i class="fas fa-home"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="menu-item" onclick="goToDashboard()">
+                <a href="match.html" class="menu-item">
                     <i class="fas fa-chart-bar"></i>
-                    <span>Atividades</span>
+                    <span>Devolutivas</span>
                     <span class="menu-badge">21</span>
+                    <i class="fas fa-chevron-right menu-arrow"></i>
                 </a>
             </li>
             <li>
-                <a href="#" class="menu-item active">
+                <a href="tela02-v2.html" class="menu-item">
                     <i class="fas fa-tasks"></i>
-                    <span>Tarefas</span>
+                    <span>Gerenciar PDP</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="menu-item">
+                <a href="tela03-v2.html" class="menu-item">
                     <i class="fas fa-users"></i>
-                    <span>Usuários</span>
+                    <span>Cadastradar necessidade</span>
                 </a>
             </li>
-            <li>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-bell"></i>
-                    <span>Notificações</span>
-                    <span class="menu-badge">21</span>
-                </a>
-            </li>
+
         </ul>
     </aside>
 
@@ -1015,7 +1010,7 @@
                         <div class="transversal-form" id="transversalForm">
                             <div class="progress-section">
                                 <div class="progress-header">
-                                    <h3 class="progress-title">Necessidade Transversal</h3>
+                                    <h3 class="progress-title">Necessidade Específica</h3>
                                     <span class="progress-counter">
                                         Pergunta <span id="currentQuestion">1</span> de <span id="totalQuestions">5</span>
                                     </span>
@@ -1025,12 +1020,34 @@
                                 </div>
                             </div>
 
+                            
+
                             <div class="question-container">
                                 <div class="question-text" id="questionText">
                                     O que é necessário aprender ou aprimorar a respeito dos conhecimentos, habilidades e atitudes para aperfeiçoar o seu desempenho ou de sua equipe?
                                 </div>
-
+                            
                                 <div id="questionContent">
+                                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                                        <label class="form-label">Selecione uma necessidade geral:</label>
+                                        <select class="form-input form-select" id="generalNeedSelect">
+                                            <option value="">Escolha uma necessidade geral</option>
+                                            <option value="lideranca">Liderança e Gestão de Pessoas</option>
+                                            <option value="comunicacao">Comunicação e Relacionamento</option>
+                                            <option value="inovacao">Inovação e Criatividade</option>
+                                            <option value="planejamento">Planejamento e Organização</option>
+                                            <option value="desenvolvimento">Desenvolvimento Pessoal</option>
+                                            <option value="trabalho-equipe">Trabalho em Equipe</option>
+                                            <option value="resolucao-problemas">Resolução de Problemas</option>
+                                            <option value="adaptabilidade">Adaptabilidade e Flexibilidade</option>
+                                            <option value="etica">Ética e Responsabilidade</option>
+                                            <option value="tecnologia">Competências Digitais</option>
+                                            <option value="gestao-publica">Gestão Pública</option>
+                                            <option value="atendimento">Atendimento ao Cidadão</option>
+                                            <option value="outros">Outros</option>
+                                        </select>
+                                    </div>
+                                    
                                     <textarea class="form-input form-textarea" placeholder="Digite sua resposta aqui..." id="questionAnswer"></textarea>
                                 </div>
                             </div>
@@ -1234,60 +1251,103 @@
 
         // ===== FORMULÁRIO TRANSVERSAL =====
         function updateTransversalQuestion() {
-            const question = transversalQuestions[currentQuestionIndex];
-            const questionText = document.getElementById('questionText');
-            const questionContent = document.getElementById('questionContent');
-            const currentQuestionSpan = document.getElementById('currentQuestion');
-            const progressFill = document.getElementById('progressFill');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
+    const question = transversalQuestions[currentQuestionIndex];
+    const questionText = document.getElementById('questionText');
+    const questionContent = document.getElementById('questionContent');
+    const currentQuestionSpan = document.getElementById('currentQuestion');
+    const progressFill = document.getElementById('progressFill');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
-            questionText.textContent = question.text;
-            currentQuestionSpan.textContent = currentQuestionIndex + 1;
+    questionText.textContent = question.text;
+    currentQuestionSpan.textContent = currentQuestionIndex + 1;
+    
+    const progressPercent = ((currentQuestionIndex + 1) / transversalQuestions.length) * 100;
+    progressFill.style.width = progressPercent + '%';
+
+    // Atualizar conteúdo da pergunta
+    if (question.type === 'numeric_uf') {
+        questionContent.innerHTML = `
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Quantidade de servidores/empregados:</label>
+                    <input type="number" class="form-input" placeholder="Ex: 25" id="serverCount" min="1" max="10000">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Unidade Federativa:</label>
+                    <select class="form-input form-select" id="ufSelect">
+                        <option value="">Selecione a UF</option>
+                        ${states.map(state => `<option value="${state}">${state}</option>`).join('')}
+                    </select>
+                </div>
+            </div>
+        `;
+    } else if (currentQuestionIndex === 0) {
+        // Primeira pergunta - incluir dropdown
+        questionContent.innerHTML = `
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label class="form-label">Selecione uma necessidade geral:</label>
+                <select class="form-input form-select" id="generalNeedSelect">
+                    <option value="">Escolha uma necessidade geral</option>
+                    <option value="lideranca">Liderança e Gestão de Pessoas</option>
+                    <option value="comunicacao">Comunicação e Relacionamento</option>
+                    <option value="inovacao">Inovação e Criatividade</option>
+                    <option value="planejamento">Planejamento e Organização</option>
+                    <option value="desenvolvimento">Desenvolvimento Pessoal</option>
+                    <option value="trabalho-equipe">Trabalho em Equipe</option>
+                    <option value="resolucao-problemas">Resolução de Problemas</option>
+                    <option value="adaptabilidade">Adaptabilidade e Flexibilidade</option>
+                    <option value="etica">Ética e Responsabilidade</option>
+                    <option value="tecnologia">Competências Digitais</option>
+                    <option value="gestao-publica">Gestão Pública</option>
+                    <option value="atendimento">Atendimento ao Cidadão</option>
+                    <option value="outros">Outros</option>
+                </select>
+            </div>
+            <textarea class="form-input form-textarea" placeholder="Digite sua resposta aqui..." id="questionAnswer" maxlength="2000"></textarea>
+            <div class="char-counter">0/2000 caracteres</div>
+        `;
+        
+        // Configurar contador de caracteres
+        const textarea = document.getElementById('questionAnswer');
+        const counter = document.querySelector('.char-counter');
+        
+        textarea.addEventListener('input', function() {
+            const length = this.value.length;
+            counter.textContent = `${length}/2000 caracteres`;
             
-            const progressPercent = ((currentQuestionIndex + 1) / transversalQuestions.length) * 100;
-            progressFill.style.width = progressPercent + '%';
-
-            // Atualizar conteúdo da pergunta
-            if (question.type === 'numeric_uf') {
-                questionContent.innerHTML = `
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Quantidade de servidores/empregados:</label>
-                            <input type="number" class="form-input" placeholder="Ex: 25" id="serverCount" min="1" max="10000">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Unidade Federativa:</label>
-                            <select class="form-input form-select" id="ufSelect">
-                                <option value="">Selecione a UF</option>
-                                ${states.map(state => `<option value="${state}">${state}</option>`).join('')}
-                            </select>
-                        </div>
-                    </div>
-                `;
+            if (length > 1800) {
+                counter.style.color = '#ef4444';
+            } else if (length > 1500) {
+                counter.style.color = '#f59e0b';
             } else {
-                questionContent.innerHTML = `
-                    <textarea class="form-input form-textarea" placeholder="Digite sua resposta aqui..." id="questionAnswer" maxlength="2000"></textarea>
-                    <div class="char-counter">0/2000 caracteres</div>
-                `;
-                
-                // Configurar contador de caracteres
-                const textarea = document.getElementById('questionAnswer');
-                const counter = document.querySelector('.char-counter');
-                
-                textarea.addEventListener('input', function() {
-                    const length = this.value.length;
-                    counter.textContent = `${length}/2000 caracteres`;
-                    
-                    if (length > 1800) {
-                        counter.style.color = '#ef4444';
-                    } else if (length > 1500) {
-                        counter.style.color = '#f59e0b';
-                    } else {
-                        counter.style.color = '#6b7280';
-                    }
-                });
+                counter.style.color = '#6b7280';
             }
+        });
+    } else {
+        // Outras perguntas - apenas textarea
+        questionContent.innerHTML = `
+            <textarea class="form-input form-textarea" placeholder="Digite sua resposta aqui..." id="questionAnswer" maxlength="2000"></textarea>
+            <div class="char-counter">0/2000 caracteres</div>
+        `;
+        
+        // Configurar contador de caracteres
+        const textarea = document.getElementById('questionAnswer');
+        const counter = document.querySelector('.char-counter');
+        
+        textarea.addEventListener('input', function() {
+            const length = this.value.length;
+            counter.textContent = `${length}/2000 caracteres`;
+            
+            if (length > 1800) {
+                counter.style.color = '#ef4444';
+            } else if (length > 1500) {
+                counter.style.color = '#f59e0b';
+            } else {
+                counter.style.color = '#6b7280';
+            }
+        });
+    }
 
             // Carregar resposta salva
             loadSavedAnswer();
@@ -1768,19 +1828,33 @@
         function setupSidebar() {
             // Funcionalidade do menu
             const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    if (!this.onclick) {
-                        e.preventDefault();
-                        
-                        // Remove active class from all items
-                        menuItems.forEach(i => i.classList.remove('active'));
-                        
-                        // Add active class to clicked item
-                        this.classList.add('active');
-                    }
-                });
-            });
+    menuItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            // Verifica se o item tem href válido
+            const href = this.getAttribute('href');
+            
+            // Se não tem href ou href é #, previne o comportamento padrão
+            if (!href || href === '#') {
+                e.preventDefault();
+            }
+            // Se tem href válido, deixa navegar normalmente
+            
+            // Remove active class from all items
+            menuItems.forEach(i => i.classList.remove('active'));
+            
+            // Add active class to clicked item
+            this.classList.add('active');
+            
+            // Handle arrow rotation for expandable items
+            const arrow = this.querySelector('.menu-arrow');
+            if (arrow) {
+                this.classList.toggle('expanded');
+            }
+            
+            // Se tem href válido, navega (não precisa fazer nada, o browser faz sozinho)
+            // Se não tem href, pode executar ação customizada aqui
+        });
+    });
 
             // Busca no sidebar
             const searchInput = document.querySelector('.sidebar-search input');

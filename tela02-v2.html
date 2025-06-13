@@ -845,31 +845,32 @@
         <ul class="sidebar-menu">
             <li class="menu-label">Menu</li>
             <li>
-                <a href="#" class="menu-item" onclick="goToHome()">
+                <a href="index.html" class="menu-item active">
                     <i class="fas fa-home"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="menu-item active">
+                <a href="match.html" class="menu-item">
                     <i class="fas fa-chart-bar"></i>
-                    <span>Atividades</span>
+                    <span>Devolutivas</span>
                     <span class="menu-badge">21</span>
                     <i class="fas fa-chevron-right menu-arrow"></i>
                 </a>
             </li>
             <li>
-                <a href="#" class="menu-item">
+                <a href="tela02-v2.html" class="menu-item">
                     <i class="fas fa-tasks"></i>
-                    <span>Tarefas</span>
+                    <span>Gerenciar PDP</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="menu-item">
+                <a href="tela03-v2.html" class="menu-item">
                     <i class="fas fa-users"></i>
-                    <span>Usuários</span>
+                    <span>Cadastradar necessidade</span>
                 </a>
             </li>
+
         </ul>
     </aside>
 
@@ -980,18 +981,16 @@
     </main>
 
     <script>
-        // Dados mock do órgão selecionado
-        const selectedOrgan = {
-            id: 1,
-            name: 'Ministério da Educação',
-            code: 'MEC',
-            status: 'active',
-            startDate: '01/07/2025',
-            endDate: '31/08/2025'
-        };
+       // Dados mock do órgão selecionado
+const selectedOrgan = {
+    id: 1,
+    name: 'Ministério da Educação',
+    code: 'MEC',
+    status: 'active',
+    startDate: '01/07/2025',
+    endDate: '31/08/2025'
+};
 
-        // Dados das solicitações
-        // Dados das solicitações
 // Dados das solicitações
 const pdpRequests = [
     {
@@ -1038,8 +1037,8 @@ const pdpRequests = [
     }
 ];
 
-        // Função para renderizar a tabela
-        function renderTable(data = pdpRequests) {
+// Função para renderizar a tabela
+function renderTable(data = pdpRequests) {
     const container = document.getElementById('tableContainer');
     
     if (data.length === 0) {
@@ -1103,25 +1102,25 @@ const pdpRequests = [
     container.innerHTML = tableHTML;
 }
 
-        // Configurar opções de radio
-        function setupRadioOptions() {
-            const options = document.querySelectorAll('.radio-option');
-            options.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Remove selected class from all options
-                    options.forEach(opt => opt.classList.remove('selected'));
-                    // Add selected class to clicked option
-                    this.classList.add('selected');
-                    // Check the radio input
-                    this.querySelector('input').checked = true;
-                    
-                    console.log('Tipo de preenchimento selecionado:', this.querySelector('input').value);
-                });
-            });
-        }
+// Configurar opções de radio
+function setupRadioOptions() {
+    const options = document.querySelectorAll('.radio-option');
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            // Remove selected class from all options
+            options.forEach(opt => opt.classList.remove('selected'));
+            // Add selected class to clicked option
+            this.classList.add('selected');
+            // Check the radio input
+            this.querySelector('input').checked = true;
+            
+            console.log('Tipo de preenchimento selecionado:', this.querySelector('input').value);
+        });
+    });
+}
 
-        // Função de busca
-        function setupSearch() {
+// Função de busca
+function setupSearch() {
     const searchInput = document.getElementById('searchInput');
     const necessityFilter = document.getElementById('necessityFilter');
     
@@ -1140,166 +1139,175 @@ const pdpRequests = [
         renderTable(filteredData);
     }
     
-    searchInput.addEventListener('input', filterData);
-    necessityFilter.addEventListener('change', filterData);
+    if (searchInput) searchInput.addEventListener('input', filterData);
+    if (necessityFilter) necessityFilter.addEventListener('change', filterData);
 }
 
-        // Funções de ação
-        function viewRequest(id) {
-            console.log('Visualizar solicitação:', id);
-            alert(`Visualizando solicitação ID: ${id}`);
-        }
+// Funções de ação
+function viewRequest(id) {
+    console.log('Visualizar solicitação:', id);
+    alert(`Visualizando solicitação ID: ${id}`);
+}
 
-        function downloadPDF(id) {
-            console.log('Download PDF:', id);
-            alert(`Baixando PDF da solicitação ID: ${id}`);
-        }
+function downloadPDF(id) {
+    console.log('Download PDF:', id);
+    alert(`Baixando PDF da solicitação ID: ${id}`);
+}
 
-        function editRequest(id) {
-            console.log('Editar solicitação:', id);
-            alert(`Editando solicitação ID: ${id}`);
-        }
+function editRequest(id) {
+    console.log('Editar solicitação:', id);
+    alert(`Editando solicitação ID: ${id}`);
+}
 
-        function deleteRequest(id) {
-            if (confirm('Tem certeza que deseja excluir esta solicitação?')) {
-                console.log('Excluir solicitação:', id);
-                alert(`Solicitação ID: ${id} excluída com sucesso!`);
-                // Aqui você removeria o item da lista e re-renderizaria
+function deleteRequest(id) {
+    if (confirm('Tem certeza que deseja excluir esta solicitação?')) {
+        console.log('Excluir solicitação:', id);
+        alert(`Solicitação ID: ${id} excluída com sucesso!`);
+        // Aqui você removeria o item da lista e re-renderizaria
+    }
+}
+
+function newRequest() {
+    console.log('Nova solicitação');
+    alert('Redirecionando para o formulário de nova solicitação...\n\nEm uma implementação real, isso levaria para a Tela 3!');
+    // window.location.href = 'tela3.html';
+}
+
+function goBack() {
+    console.log('Voltar para lista de órgãos');
+    alert('Voltando para a lista de órgãos...\n\nEm uma implementação real, isso voltaria para a Tela 1!');
+    // window.location.href = 'tela1.html';
+}
+
+function goToHome() {
+    console.log('Ir para Home');
+    goBack();
+}
+
+// Funções do menu lateral
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+}
+
+function closeSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+}
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', function() {
+    // Configurar dados do órgão no header
+    const organNameEl = document.getElementById('organName');
+    const breadcrumbOrganEl = document.getElementById('breadcrumbOrgan');
+    const statusTitleEl = document.getElementById('statusTitle');
+    const statusSubtitleEl = document.getElementById('statusSubtitle');
+    
+    if (organNameEl) organNameEl.textContent = selectedOrgan.name;
+    if (breadcrumbOrganEl) breadcrumbOrganEl.textContent = selectedOrgan.name;
+    
+    // Configurar status banner
+    if (selectedOrgan.status === 'active') {
+        if (statusTitleEl) statusTitleEl.textContent = `Inscrições Abertas até ${selectedOrgan.endDate}`;
+        if (statusSubtitleEl) statusSubtitleEl.textContent = `Período: ${selectedOrgan.startDate} a ${selectedOrgan.endDate}`;
+    }
+    
+    // Configurar funcionalidades
+    setupRadioOptions();
+    setupSearch();
+    renderTable();
+    
+    // SETUP DO MENU LATERAL
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            // Verifica se o item tem href válido
+            const href = this.getAttribute('href');
+            
+            // Se não tem href ou href é #, previne o comportamento padrão
+            if (!href || href === '#') {
+                e.preventDefault();
             }
-        }
-
-        function newRequest() {
-            console.log('Nova solicitação');
-            alert('Redirecionando para o formulário de nova solicitação...\n\nEm uma implementação real, isso levaria para a Tela 3!');
-            // window.location.href = 'tela3.html';
-        }
-
-        function goBack() {
-            console.log('Voltar para lista de órgãos');
-            alert('Voltando para a lista de órgãos...\n\nEm uma implementação real, isso voltaria para a Tela 1!');
-            // window.location.href = 'tela1.html';
-        }
-
-        function goToHome() {
-            console.log('Ir para Home');
-            goBack();
-        }
-
-        // Funções do menu lateral
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
+            // Se tem href válido (.html), deixa navegar normalmente
             
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('active');
-        }
-
-        function closeSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
+            // Remove active class from all items
+            menuItems.forEach(i => i.classList.remove('active'));
             
-            sidebar.classList.remove('open');
-            overlay.classList.remove('active');
-        }
-
-        // Inicialização
-        document.addEventListener('DOMContentLoaded', function() {
-            // Configurar dados do órgão no header
-            document.getElementById('organName').textContent = selectedOrgan.name;
-            document.getElementById('breadcrumbOrgan').textContent = selectedOrgan.name;
+            // Add active class to clicked item
+            this.classList.add('active');
             
-            // Configurar status banner
-            if (selectedOrgan.status === 'active') {
-                document.getElementById('statusTitle').textContent = `Inscrições Abertas até ${selectedOrgan.endDate}`;
-                document.getElementById('statusSubtitle').textContent = `Período: ${selectedOrgan.startDate} a ${selectedOrgan.endDate}`;
+            // Handle arrow rotation for expandable items
+            const arrow = this.querySelector('.menu-arrow');
+            if (arrow) {
+                this.classList.toggle('expanded');
             }
-            
-            // Configurar funcionalidades
-            setupRadioOptions();
-            setupSearch();
-            renderTable();
-            
-            // Animações de entrada
-            const elements = document.querySelectorAll('.status-banner, .config-panel, .table-section');
-            elements.forEach((element, index) => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    element.style.transition = 'all 0.6s ease';
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }, index * 150);
-            });
+        });
+    });
 
-            // Funcionalidade do menu
+    // BUSCA NO SIDEBAR
+    const sidebarSearchInput = document.querySelector('.sidebar-search input');
+    if (sidebarSearchInput) {
+        sidebarSearchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
             const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all items
-                    menuItems.forEach(i => i.classList.remove('active'));
-                    
-                    // Add active class to clicked item (exceto para Home e outros links funcionais)
-                    if (!this.onclick || this.onclick.toString().includes('goToHome')) {
-                        // Para Home, não adiciona active aqui pois vai navegar
-                    } else {
-                        this.classList.add('active');
-                    }
-                    
-                    // Handle arrow rotation for expandable items
-                    const arrow = this.querySelector('.menu-arrow');
-                    if (arrow) {
-                        this.classList.toggle('expanded');
-                    }
-                });
-            });
-
-            // Adicionar funcionalidade de busca no sidebar
-            const searchInput = document.querySelector('.sidebar-search input');
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const menuItems = document.querySelectorAll('.menu-item');
-                
-                menuItems.forEach(item => {
-                    const text = item.textContent.toLowerCase();
-                    const parentLi = item.parentElement;
-                    
-                    if (text.includes(searchTerm)) {
-                        parentLi.style.display = 'block';
-                        item.style.opacity = '1';
-                    } else {
-                        parentLi.style.display = searchTerm ? 'none' : 'block';
-                        item.style.opacity = searchTerm ? '0.5' : '1';
-                    }
-                });
-            });
-        });
-
-        // Fechar sidebar ao clicar fora em mobile
-        document.addEventListener('click', function(e) {
-            const sidebar = document.getElementById('sidebar');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            const overlay = document.querySelector('.sidebar-overlay');
             
-            if (window.innerWidth <= 768) {
-                if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
-                    closeSidebar();
-                }
-            }
-        });
-
-        // Responsividade - ajustar sidebar em resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                const sidebar = document.getElementById('sidebar');
-                const overlay = document.querySelector('.sidebar-overlay');
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentLi = item.parentElement;
                 
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-            }
+                if (text.includes(searchTerm)) {
+                    parentLi.style.display = 'block';
+                    item.style.opacity = '1';
+                } else {
+                    parentLi.style.display = searchTerm ? 'none' : 'block';
+                    item.style.opacity = searchTerm ? '0.5' : '1';
+                }
+            });
         });
+    }
+    
+    // Animações de entrada
+    const elements = document.querySelectorAll('.status-banner, .config-panel, .table-section');
+    elements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            element.style.transition = 'all 0.6s ease';
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }, index * 150);
+    });
+});
+
+// Fechar sidebar ao clicar fora em mobile
+document.addEventListener('click', function(e) {
+    const sidebar = document.getElementById('sidebar');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    
+    if (window.innerWidth <= 768) {
+        if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+            closeSidebar();
+        }
+    }
+});
+
+// Responsividade - ajustar sidebar em resize
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
+        
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+    }
+});
     </script>
 </body>
 </html>
