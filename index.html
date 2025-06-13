@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: #023038;
+            padding: 1.5rem;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-logo {
+            width: 40px;
+            height: 40px;
+            background: #024248;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .sidebar-title {
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .sidebar-search {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-search input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            background: #024248;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-search input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .sidebar-search input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .sidebar-search i {
+            position: absolute;
+            left: 0.875rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .menu-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .menu-label:first-child {
+            margin-top: 0;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .menu-item.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .menu-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .menu-badge {
+            margin-left: auto;
+            background: #ef4444;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 8px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .menu-arrow {
+            margin-left: auto;
+            font-size: 0.8rem;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-item.expanded .menu-arrow {
+            transform: rotate(90deg);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background-image: url(../img/inovaa.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(76, 81, 191, 0.15);
+            border-radius: 24px;
+            margin: 1rem 1rem 0 1rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .header-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-subtitle {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.75rem;
+        }
+
+        .header-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.75rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(76, 81, 191, 0.15);
+            border-color: #4c51bf;
+        }
+
+        .stat-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-text p {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #024248 0%, #024248 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        /* Page Title */
+        .page-title {
+            margin-bottom: 2rem;
+        }
+
+        .page-title h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        /* Filtros Section */
+.filters-section {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.filters-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+}
+
+.results-count {
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.filters-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: 2px solid #e2e8f0;
+    background: white;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    border-color: #024248;
+    color: #024248;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: #024248;
+    border-color: #024248;
+    color: white;
+}
+
+.search-filter {
+    position: relative;
+}
+
+.search-input-wrapper {
+    position: relative;
+    max-width: 400px;
+}
+
+.search-input-wrapper i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.search-input-wrapper input {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 2.5rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    color: #1e293b;
+    transition: border-color 0.2s ease;
+}
+
+.search-input-wrapper input:focus {
+    outline: none;
+    border-color: #024248;
+}
+
+.clear-search {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 6px;
+    transition: color 0.2s ease;
+}
+
+.clear-search:hover {
+    color: #dc2626;
+}
+
+/* Organs Grid - 3 colunas */
+.organs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+/* Responsivo para o grid */
+@media (max-width: 1200px) {
+    .organs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .organs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filters-buttons {
+        flex-direction: column;
+    }
+    
+    .filter-btn {
+        justify-content: center;
+    }
+    
+    .filters-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+/* Animação para cards filtrados */
+.organ-card.hidden {
+    display: none;
+}
+
+.organ-card.fade-in {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+        /* Organs Grid */
+        .organs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .organ-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.75rem;
+            border: 2px solid #f1f5f9;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .organ-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .organ-card.active {
+            border-color: #4c51bf;
+            box-shadow: 0 8px 25px rgba(76, 81, 191, 0.15);
+        }
+
+        .organ-card.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #024248 0%, #024248 100%);
+        }
+
+        .organ-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.25rem;
+        }
+
+        .organ-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .organ-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #024248 0%, #012124 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.4rem;
+        }
+
+        .organ-details h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+
+        .organ-code {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .status-icon {
+            font-size: 1.25rem;
+        }
+
+        .status-icon.active { color: #059669; }
+        .status-icon.expired { color: #dc2626; }
+        .status-icon.upcoming { color: #6b7280; }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+
+        .status-badge.active {
+            color: #059669;
+            background: #dcfdf7;
+            border: 1px solid #a7f3d0;
+        }
+
+        .status-badge.expired {
+            color: #dc2626;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+
+        .status-badge.upcoming {
+            color: #6b7280;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .detail-item i {
+            width: 16px;
+            margin-right: 0.75rem;
+            color: #024248;
+        }
+
+        .progress-section {
+            margin: 1.5rem 0;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .progress-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .progress-value {
+            color: #1e293b;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4c51bf 0%, #667eea 100%);
+            border-radius: 6px;
+            transition: width 0.8s ease;
+        }
+
+        .access-btn {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .access-btn.enabled {
+            background: #007D7A;
+            color: white;
+        }
+
+        .access-btn.enabled:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 81, 191, 0.3);
+        }
+
+        .access-btn.disabled {
+            background: #f8fafc;
+            color: #94a3b8;
+            cursor: not-allowed;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            background: rgba(45, 55, 72, 0.9);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0.75rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .header {
+                margin: 0;
+                border-radius: 0;
+                padding: 3rem 1rem 2rem;
+            }
+
+            .content-area {
+                padding: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .organs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .organ-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Sidebar Overlay */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <i class="fas fa-sparkles"></i>
+            </div>
+            <h1 class="sidebar-title">Sistema PDP</h1>
+        </div>
+
+        
+
+        <ul class="sidebar-menu">
+            <li class="menu-label">Menu</li>
+            <li>
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Atividades</span>
+                    <span class="menu-badge">21</span>
+                    <i class="fas fa-chevron-right menu-arrow"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-tasks"></i>
+                    <span>Tarefas</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <span>Usuários</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Notificações</span>
+                    <span class="menu-badge">21</span>
+                </a>
+            </li>
+
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fas fa-sparkles"></i>
+                </div>
+                <h1 class="header-title">Sistema PDP</h1>
+                <p class="header-subtitle">Plano de Desenvolvimento Profissional</p>
+                <p class="header-description">Plataforma integrada para gestão de competências no setor público</p>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <div class="content-container">
+                <!-- Stats Cards -->
+
+                <!-- Page Title -->
+                <div class="page-title">
+                    <h2>Selecione um Órgão</h2>
+                    <p class="page-subtitle">Escolha o órgão para gerenciar suas solicitações de desenvolvimento</p>
+                </div>
+                
+
+                <!-- Filtros -->
+<div class="filters-section">
+    <div class="filters-header">
+        <h3>Filtrar por categoria:</h3>
+        <div class="results-count">
+            <span id="resultsCount">0 órgãos encontrados</span>
+        </div>
+    </div>
+    
+    <div class="filters-buttons">
+        <button class="filter-btn active" data-filter="all">
+            <i class="fas fa-th-large"></i>
+            Todos
+        </button>
+        <button class="filter-btn" data-filter="ministerio">
+            <i class="fas fa-landmark"></i>
+            Ministérios
+        </button>
+        <button class="filter-btn" data-filter="estadual">
+            <i class="fas fa-map-marked-alt"></i>
+            Estaduais
+        </button>
+        <button class="filter-btn" data-filter="municipal">
+            <i class="fas fa-city"></i>
+            Municipais
+        </button>
+    </div>
+    
+    <div class="search-filter">
+        <div class="search-input-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="text" id="organSearch" placeholder="Buscar órgão por nome...">
+            <button class="clear-search" id="clearSearch" style="display: none;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+                <!-- Organs Grid -->
+                <div class="organs-grid" id="organsGrid">
+                    <!-- Os cards serão gerados pelo JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Dados dos órgãos
+        // Dados dos órgãos - SUBSTITUIR o array existente
+const organs = [
+    {
+        id: 1,
+        name: 'Ministério da Educação',
+        code: 'MEC',
+        category: 'ministerio',
+        status: 'active',
+        startDate: '01/07/2025',
+        endDate: '31/08/2025',
+        pdpsCount: 3,
+        available: true,
+        progress: 75,
+        icon: 'fas fa-graduation-cap'
+    },
+    {
+        id: 2,
+        name: 'Ministério da Saúde',
+        code: 'MS',
+        category: 'ministerio',
+        status: 'expired',
+        startDate: '15/06/2025',
+        endDate: '15/07/2025',
+        pdpsCount: 1,
+        available: false,
+        progress: 100,
+        icon: 'fas fa-heartbeat'
+    },
+    {
+        id: 3,
+        name: 'Secretaria de Estado da Educação - SP',
+        code: 'SEE-SP',
+        category: 'estadual',
+        status: 'active',
+        startDate: '01/08/2025',
+        endDate: '30/09/2025',
+        pdpsCount: 5,
+        available: true,
+        progress: 45,
+        icon: 'fas fa-school'
+    },
+    {
+        id: 4,
+        name: 'Prefeitura de São Paulo',
+        code: 'PMSP',
+        category: 'municipal',
+        status: 'upcoming',
+        startDate: '15/09/2025',
+        endDate: '15/10/2025',
+        pdpsCount: 0,
+        available: false,
+        progress: 0,
+        icon: 'fas fa-building'
+    },
+    // Adicione mais órgãos conforme necessário...
+];
+
+        // Função para obter o texto do status
+        function getStatusText(status) {
+            switch(status) {
+                case 'active': return 'PDP Disponível';
+                case 'expired': return 'Prazo Expirado';
+                case 'upcoming': return 'Em Breve';
+                default: return '';
+            }
+        }
+
+        // Função para obter o ícone do status
+        function getStatusIcon(status) {
+            const icons = {
+                active: '<i class="fas fa-check-circle status-icon active"></i>',
+                expired: '<i class="fas fa-times-circle status-icon expired"></i>',
+                upcoming: '<i class="fas fa-clock status-icon upcoming"></i>'
+            };
+            return icons[status] || '';
+        }
+
+        // Função para renderizar os cards dos órgãos
+        function renderOrgans() {
+            const container = document.getElementById('organsGrid');
+            
+            container.innerHTML = organs.map(organ => `
+                <div class="organ-card ${organ.available ? 'active' : ''}" data-organ-id="${organ.id}">
+                    <div class="organ-header">
+                        <div class="organ-info">
+                            <div class="organ-icon">
+                                <i class="${organ.icon}"></i>
+                            </div>
+                            <div class="organ-details">
+                                <h3>${organ.name}</h3>
+                                <div class="organ-code">${organ.code}</div>
+                            </div>
+                        </div>
+                        ${getStatusIcon(organ.status)}
+                    </div>
+                    
+                    <div class="status-badge ${organ.status}">
+                        ${getStatusText(organ.status)}
+                    </div>
+                    
+                    <div class="organ-info-section">
+                        <div class="detail-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>${organ.startDate} a ${organ.endDate}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>${organ.pdpsCount} solicitações cadastradas</span>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    <button class="access-btn ${organ.available ? 'enabled' : 'disabled'}" 
+                            ${organ.available ? '' : 'disabled'} 
+                            onclick="window.location.href='tela02-v2.html'">
+                        <i class="fas fa-arrow-right"></i>
+                        ${organ.available ? 'Acessar Órgão' : 'Indisponível'}
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Função para acessar órgão
+        function accessOrgan(organId) {
+            const organ = organs.find(o => o.id === organId);
+            if (organ && organ.available) {
+                // Animação de loading
+                const button = event.target;
+                const originalContent = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando...';
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    alert(`Acessando ${organ.name}...\n\nEm uma implementação real, isso levaria para a Tela 2!`);
+                    button.innerHTML = originalContent;
+                    button.disabled = false;
+                    // window.location.href = 'tela2.html?organ=' + organId;
+                }, 1500);
+            }
+        }
+
+        // Funções do menu lateral
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        // Inicializar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            renderOrgans();
+            
+            // Animação de entrada suave
+            const cards = document.querySelectorAll('.organ-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+
+            // Animação das barras de progresso
+            setTimeout(() => {
+                const progressBars = document.querySelectorAll('.progress-fill');
+                progressBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+            }, 800);
+
+            // Funcionalidade do menu
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all items
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Handle arrow rotation for expandable items
+                    const arrow = this.querySelector('.menu-arrow');
+                    if (arrow) {
+                        this.classList.toggle('expanded');
+                    }
+                });
+            });
+        });
+
+        // Fechar sidebar ao clicar fora em mobile
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            if (window.innerWidth <= 768) {
+                if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+                    closeSidebar();
+                }
+            }
+        });
+
+        // Adicionar funcionalidade de busca no sidebar
+        const searchInput = document.querySelector('.sidebar-search input');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentLi = item.parentElement;
+                
+                if (text.includes(searchTerm)) {
+                    parentLi.style.display = 'block';
+                    item.style.opacity = '1';
+                } else {
+                    parentLi.style.display = searchTerm ? 'none' : 'block';
+                    item.style.opacity = searchTerm ? '0.5' : '1';
+                }
+            });
+        });
+
+        // Responsividade - ajustar sidebar em resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.querySelector('.sidebar-overlay');
+                
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        });
+
+
+
+        // Variáveis globais para filtros
+let currentFilter = 'all';
+let currentSearch = '';
+
+// Função para filtrar órgãos
+function filterOrgans() {
+    const filteredOrgans = organs.filter(organ => {
+        const matchesCategory = currentFilter === 'all' || organ.category === currentFilter;
+        const matchesSearch = currentSearch === '' || 
+            organ.name.toLowerCase().includes(currentSearch.toLowerCase()) ||
+            organ.code.toLowerCase().includes(currentSearch.toLowerCase());
+        
+        return matchesCategory && matchesSearch;
+    });
+    
+    renderFilteredOrgans(filteredOrgans);
+    updateResultsCount(filteredOrgans.length);
+}
+
+// Função para renderizar órgãos filtrados
+function renderFilteredOrgans(filteredOrgans) {
+    const container = document.getElementById('organsGrid');
+    
+    if (filteredOrgans.length === 0) {
+        container.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                <i class="fas fa-search" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 1rem;"></i>
+                <h3 style="color: #64748b; margin-bottom: 0.5rem;">Nenhum órgão encontrado</h3>
+                <p style="color: #94a3b8;">Tente ajustar os filtros ou busca</p>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = filteredOrgans.map(organ => `
+        <div class="organ-card ${organ.available ? 'active' : ''} fade-in" data-organ-id="${organ.id}">
+            <!-- Conteúdo do card igual ao original -->
+            <div class="organ-header">
+                <div class="organ-info">
+                    <div class="organ-icon">
+                        <i class="${organ.icon}"></i>
+                    </div>
+                    <div class="organ-details">
+                        <h3>${organ.name}</h3>
+                        <div class="organ-code">${organ.code}</div>
+                    </div>
+                </div>
+                ${getStatusIcon(organ.status)}
+            </div>
+            
+            <div class="status-badge ${organ.status}">
+                ${getStatusText(organ.status)}
+            </div>
+            
+            <div class="organ-info-section">
+                <div class="detail-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>${organ.startDate} a ${organ.endDate}</span>
+                </div>
+                
+                <div class="detail-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>${organ.pdpsCount} solicitações cadastradas</span>
+                </div>
+            </div>
+            
+            <button class="access-btn ${organ.available ? 'enabled' : 'disabled'}" 
+                    ${organ.available ? '' : 'disabled'} 
+                    onclick="accessOrgan(${organ.id})">
+                <i class="fas fa-arrow-right"></i>
+                ${organ.available ? 'Acessar Órgão' : 'Indisponível'}
+            </button>
+        </div>
+    `).join('');
+}
+
+// Função para atualizar contador de resultados
+function updateResultsCount(count) {
+    document.getElementById('resultsCount').textContent = `${count} órgão${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
+}
+
+// Event listeners para filtros - ADICIONAR no DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    // ... código existente ...
+    
+    // Filtros de categoria
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            currentFilter = this.dataset.filter;
+            filterOrgans();
+        });
+    });
+    
+    // Busca por texto
+    const searchInput = document.getElementById('organSearch');
+    const clearSearch = document.getElementById('clearSearch');
+    
+    searchInput.addEventListener('input', function() {
+        currentSearch = this.value;
+        filterOrgans();
+        
+        clearSearch.style.display = this.value ? 'block' : 'none';
+    });
+    
+    clearSearch.addEventListener('click', function() {
+        searchInput.value = '';
+        currentSearch = '';
+        this.style.display = 'none';
+        filterOrgans();
+        searchInput.focus();
+    });
+    
+    // Inicializar filtros
+    filterOrgans();
+});
+    </script>
+</body>
+</html>
