@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Home - Sistema PDP</title>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -58,41 +58,6 @@
             color: white;
             font-size: 1.25rem;
             font-weight: 600;
-        }
-
-        .sidebar-search {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .sidebar-search input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
-            background: #024248;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            color: white;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-        }
-
-        .sidebar-search input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .sidebar-search input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .sidebar-search i {
-            position: absolute;
-            left: 0.875rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
         }
 
         .sidebar-menu {
@@ -159,16 +124,6 @@
             text-align: center;
         }
 
-        .menu-arrow {
-            margin-left: auto;
-            font-size: 0.8rem;
-            transition: transform 0.2s ease;
-        }
-
-        .menu-item.expanded .menu-arrow {
-            transform: rotate(90deg);
-        }
-
         /* Main Content */
         .main-content {
             flex: 1;
@@ -179,7 +134,7 @@
 
         /* Header */
         .header {
-            background-image: url(./inovaa.jpg);
+            background-image: url(../img/inovaa.jpg);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -190,7 +145,7 @@
         }
 
         .header-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             text-align: center;
         }
@@ -236,62 +191,8 @@
         }
 
         .content-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-        }
-
-        /* Stats Cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 16px;
-            padding: 1.75rem;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(76, 81, 191, 0.15);
-            border-color: #4c51bf;
-        }
-
-        .stat-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .stat-text p {
-            color: #64748b;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #1e293b;
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #024248 0%, #024248 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.3rem;
         }
 
         /* Page Title */
@@ -312,367 +213,351 @@
         }
 
         /* Filtros Section */
-.filters-section {
-    background: white;
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.filters-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.filters-header h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin: 0;
-}
-
-.results-count {
-    color: #64748b;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.filters-buttons {
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
-    border: 2px solid #e2e8f0;
-    background: white;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #64748b;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.filter-btn:hover {
-    border-color: #024248;
-    color: #024248;
-    transform: translateY(-2px);
-}
-
-.filter-btn.active {
-    background: #024248;
-    border-color: #024248;
-    color: white;
-}
-
-.search-filter {
-    position: relative;
-}
-
-.search-input-wrapper {
-    position: relative;
-    max-width: 400px;
-}
-
-.search-input-wrapper i {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #64748b;
-    font-size: 0.9rem;
-}
-
-.search-input-wrapper input {
-    width: 100%;
-    padding: 0.875rem 1rem 0.875rem 2.5rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    color: #1e293b;
-    transition: border-color 0.2s ease;
-}
-
-.search-input-wrapper input:focus {
-    outline: none;
-    border-color: #024248;
-}
-
-.clear-search {
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #64748b;
-    cursor: pointer;
-    padding: 0.25rem;
-    border-radius: 6px;
-    transition: color 0.2s ease;
-}
-
-.clear-search:hover {
-    color: #dc2626;
-}
-
-/* Organs Grid - 3 colunas */
-.organs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-}
-
-/* Responsivo para o grid */
-@media (max-width: 1200px) {
-    .organs-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .organs-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .filters-buttons {
-        flex-direction: column;
-    }
-    
-    .filter-btn {
-        justify-content: center;
-    }
-    
-    .filters-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-}
-
-/* Animação para cards filtrados */
-.organ-card.hidden {
-    display: none;
-}
-
-.organ-card.fade-in {
-    animation: fadeInUp 0.4s ease forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-        /* Organs Grid */
-        .organs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .organ-card {
+        .filters-section {
             background: white;
-            border-radius: 20px;
-            padding: 1.75rem;
-            border: 2px solid #f1f5f9;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        .organ-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .organ-card.active {
-            border-color: #4c51bf;
-            box-shadow: 0 8px 25px rgba(76, 81, 191, 0.15);
-        }
-
-        .organ-card.active::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #024248 0%, #024248 100%);
-        }
-
-        .organ-header {
+        .filters-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.25rem;
-        }
-
-        .organ-info {
-            display: flex;
             align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .organ-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #024248 0%, #012124 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            color: white;
-            font-size: 1.4rem;
-        }
-
-        .organ-details h3 {
-            font-size: 1.2rem;
+        .filters-header h3 {
+            font-size: 1.1rem;
             font-weight: 600;
             color: #1e293b;
-            margin-bottom: 0.25rem;
+            margin: 0;
         }
 
-        .organ-code {
+        .results-count {
             color: #64748b;
             font-size: 0.9rem;
             font-weight: 500;
         }
 
-        .status-icon {
-            font-size: 1.25rem;
+        .filters-buttons {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        .status-icon.active { color: #059669; }
-        .status-icon.expired { color: #dc2626; }
-        .status-icon.upcoming { color: #6b7280; }
+        .filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
-        .status-badge {
+        .filter-btn:hover {
+            border-color: #024248;
+            color: #024248;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: #024248;
+            border-color: #024248;
+            color: white;
+        }
+
+        .export-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: #007D7A;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .export-btn:hover {
+            background: #005a56;
+            transform: translateY(-2px);
+        }
+
+        .search-filter {
+            position: relative;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            max-width: 400px;
+        }
+
+        .search-input-wrapper i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 2.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #1e293b;
+            transition: border-color 0.2s ease;
+        }
+
+        .search-input-wrapper input:focus {
+            outline: none;
+            border-color: #024248;
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 6px;
+            transition: color 0.2s ease;
+            display: none;
+        }
+
+        .clear-search:hover {
+            color: #dc2626;
+        }
+
+        /* Table Container */
+        .table-container {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        /* Table Styles */
+        .organs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .organs-table thead {
+            background: linear-gradient(135deg, #024248 0%, #023038 100%);
+        }
+
+        .organs-table thead th {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .organs-table tbody tr {
+            border-bottom: 1px solid #f1f5f9;
+            transition: all 0.2s ease;
+        }
+
+        .organs-table tbody tr:hover {
+            background: #f8fafc;
+            transform: scale(1.001);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .organs-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .organs-table tbody td {
+            padding: 1.25rem 1.5rem;
+            font-size: 0.9rem;
+            color: #1e293b;
+        }
+
+        /* Organ Name Cell */
+        .organ-name-cell {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .organ-icon-table {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #024248 0%, #012124 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .organ-info-table {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .organ-name-table {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .organ-code-table {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Status Badge */
+        .status-badge-table {
             display: inline-flex;
             align-items: center;
+            gap: 0.5rem;
             padding: 0.5rem 1rem;
-            border-radius: 12px;
+            border-radius: 8px;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 1.25rem;
+            white-space: nowrap;
         }
 
-        .status-badge.active {
+        .status-badge-table i {
+            font-size: 0.9rem;
+        }
+
+        .status-badge-table.active {
             color: #059669;
             background: #dcfdf7;
             border: 1px solid #a7f3d0;
         }
 
-        .status-badge.expired {
+        .status-badge-table.expired {
             color: #dc2626;
             background: #fef2f2;
             border: 1px solid #fecaca;
         }
 
-        .status-badge.upcoming {
-            color: #6b7280;
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
+        .status-badge-table.upcoming {
+            color: #f59e0b;
+            background: #fef3c7;
+            border: 1px solid #fde68a;
         }
 
-        .detail-item {
-            display: flex;
-            align-items: center;
+        .status-badge-table.elaboration {
+            color: #3b82f6;
+            background: #dbeafe;
+            border: 1px solid #93c5fd;
+        }
+
+        /* Date Cell */
+        .date-cell {
             color: #64748b;
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
+            white-space: nowrap;
         }
 
-        .detail-item i {
-            width: 16px;
-            margin-right: 0.75rem;
+        .date-cell i {
             color: #024248;
+            margin-right: 0.5rem;
         }
 
-        .progress-section {
-            margin: 1.5rem 0;
-        }
-
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-        }
-
-        .progress-label {
-            color: #64748b;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .progress-value {
-            color: #1e293b;
+        /* Year Cell */
+        .year-cell {
             font-weight: 600;
-            font-size: 0.9rem;
+            color: #1e293b;
+            text-align: center;
         }
 
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #f1f5f9;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4c51bf 0%, #667eea 100%);
-            border-radius: 6px;
-            transition: width 0.8s ease;
-        }
-
-        .access-btn {
-            width: 100%;
-            padding: 0.875rem 1.5rem;
-            border-radius: 12px;
+        /* Action Button */
+        .action-btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
             border: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 0.5rem;
+            white-space: nowrap;
         }
 
-        .access-btn.enabled {
+        .action-btn.enabled {
             background: #007D7A;
             color: white;
         }
 
-        .access-btn.enabled:hover {
+        .action-btn.enabled:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(76, 81, 191, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 125, 122, 0.3);
         }
 
-        .access-btn.disabled {
+        .action-btn.disabled {
             background: #f8fafc;
             color: #94a3b8;
             cursor: not-allowed;
             border: 1px solid #e2e8f0;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+
+        .empty-state h3 {
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .empty-state p {
+            color: #94a3b8;
+        }
+
+        /* Hidden Row */
+        .organs-table tbody tr.hidden {
+            display: none;
         }
 
         /* Mobile Menu Toggle */
@@ -690,6 +575,22 @@
             font-size: 1.2rem;
             cursor: pointer;
             backdrop-filter: blur(10px);
+        }
+
+        /* Sidebar Overlay */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
         }
 
         /* Responsive */
@@ -721,34 +622,62 @@
                 padding: 1rem;
             }
 
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+            .filters-buttons {
+                flex-direction: column;
+            }
+            
+            .filter-btn {
+                justify-content: center;
             }
 
-            .organs-grid {
-                grid-template-columns: 1fr;
+            /* Mobile Table View */
+            .organs-table thead {
+                display: none;
             }
 
-            .organ-card {
-                padding: 1.5rem;
+            .organs-table tbody tr {
+                display: block;
+                margin-bottom: 1rem;
+                border: 1px solid #e2e8f0;
+                border-radius: 12px;
+                overflow: hidden;
+            }
+
+            .organs-table tbody td {
+                display: block;
+                text-align: left;
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #f1f5f9;
+            }
+
+            .organs-table tbody td:last-child {
+                border-bottom: none;
+            }
+
+            .organs-table tbody td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #64748b;
+                display: block;
+                margin-bottom: 0.5rem;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+            }
+
+            .organ-name-cell {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
-        /* Sidebar Overlay */
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
+        @media (max-width: 1024px) {
+            .organs-table tbody td {
+                padding: 1rem 1.25rem;
+            }
 
-        .sidebar-overlay.active {
-            display: block;
+            .organs-table thead th {
+                padding: 1rem 1.25rem;
+            }
         }
     </style>
 </head>
@@ -770,22 +699,12 @@
             <h1 class="sidebar-title">Sistema PDP</h1>
         </div>
 
-        
-
         <ul class="sidebar-menu">
             <li class="menu-label">Menu</li>
             <li>
                 <a href="index.html" class="menu-item active">
                     <i class="fas fa-home"></i>
                     <span>Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="match.html" class="menu-item">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>Devolutivas</span>
-                    <span class="menu-badge">21</span>
-                    <i class="fas fa-chevron-right menu-arrow"></i>
                 </a>
             </li>
             <li>
@@ -797,10 +716,16 @@
             <li>
                 <a href="tela03-v2.html" class="menu-item">
                     <i class="fas fa-users"></i>
-                    <span>Cadastradar necessidade</span>
+                    <span>Cadastrar necessidade</span>
                 </a>
             </li>
-
+            <li>
+                <a href="match.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Devolutivas</span>
+                    <span class="menu-badge">21</span>
+                </a>
+            </li>
         </ul>
     </aside>
 
@@ -821,208 +746,260 @@
         <!-- Content Area -->
         <div class="content-area">
             <div class="content-container">
-                <!-- Stats Cards -->
-
                 <!-- Page Title -->
                 <div class="page-title">
                     <h2>Selecione um Órgão</h2>
                     <p class="page-subtitle">Escolha o órgão para gerenciar suas solicitações de desenvolvimento</p>
                 </div>
-                
 
                 <!-- Filtros -->
-<div class="filters-section">
-    <div class="filters-header">
-        <h3>Filtrar por categoria:</h3>
-        <div class="results-count">
-            <span id="resultsCount">0 órgãos encontrados</span>
-        </div>
-    </div>
-    
-    <div class="filters-buttons">
-        <button class="filter-btn active" data-filter="all">
-            <i class="fas fa-th-large"></i>
-            Todos
-        </button>
-        <button class="filter-btn" data-filter="ministerio">
-            <i class="fas fa-landmark"></i>
-            Ministérios
-        </button>
-        <button class="filter-btn" data-filter="estadual">
-            <i class="fas fa-map-marked-alt"></i>
-            Estaduais
-        </button>
-        <button class="filter-btn" data-filter="municipal">
-            <i class="fas fa-city"></i>
-            Municipais
-        </button>
-    </div>
-    
-    <div class="search-filter">
-        <div class="search-input-wrapper">
-            <i class="fas fa-search"></i>
-            <input type="text" id="organSearch" placeholder="Buscar órgão por nome...">
-            <button class="clear-search" id="clearSearch" style="display: none;">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-</div>
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filtrar por categoria:</h3>
+                        <div class="results-count">
+                            <span id="resultsCount">6 órgãos encontrados</span>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-buttons">
+                        <button class="filter-btn active" data-filter="all">
+                            <i class="fas fa-th-large"></i>
+                            Todos
+                        </button>
+                        <button class="filter-btn" data-filter="ministerio">
+                            <i class="fas fa-landmark"></i>
+                            Ministérios
+                        </button>
+                        <button class="filter-btn" data-filter="estadual">
+                            <i class="fas fa-map-marked-alt"></i>
+                            Estaduais
+                        </button>
+                        <button class="filter-btn" data-filter="municipal">
+                            <i class="fas fa-city"></i>
+                            Municipais
+                        </button>
+                        <button class="export-btn" onclick="exportToCSV()">
+                            <i class="fas fa-download"></i>
+                            Exportar CSV
+                        </button>
+                    </div>
+                    
+                    <div class="search-filter">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="organSearch" placeholder="Buscar órgão por nome ou código...">
+                            <button class="clear-search" id="clearSearch">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Table Container -->
+                <div class="table-container">
+                    <div class="table-wrapper">
+                        <table class="organs-table">
+                            <thead>
+                                <tr>
+                                    <th>Órgão</th>
+                                    <th>Status</th>
+                                    <th>Período</th>
+                                    <th>Ano PDP</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Ministério da Educação -->
+                                <tr data-category="ministerio">
+                                    <td data-label="Órgão">
+                                        <div class="organ-name-cell">
+                                            <div class="organ-info-table">
+                                                <span class="organ-name-table">Ministério da Educação</span>
+                                                <span class="organ-code-table">MEC</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-label="Status">
+                                        <span class="status-badge-table elaboration">
+                                            <i class="fas fa-pencil-alt"></i>
+                                            Em elaboração do PDP
+                                        </span>
+                                    </td>
+                                    <td data-label="Período" class="date-cell">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        01/07/2025 a 31/08/2025
+                                    </td>
+                                    <td data-label="Ano PDP" class="year-cell">2025</td>
+                                    <td data-label="Ação">
+                                        <button class="action-btn enabled" onclick="window.location.href='tela02-v2.html'">
+                                            <i class="fas fa-arrow-right"></i>
+                                            Acessar
+                                        </button>
+                                    </td>
+                                </tr>
 
+                                <!-- Ministério da Saúde -->
+                                <tr data-category="ministerio">
+                                    <td data-label="Órgão">
+                                        <div class="organ-name-cell">
+                                            <div class="organ-info-table">
+                                                <span class="organ-name-table">Ministério da Saúde</span>
+                                                <span class="organ-code-table">MS</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-label="Status">
+                                        <span class="status-badge-table elaboration">
+                                            <i class="fas fa-pencil-alt"></i>
+                                            Em elaboração do PDP
+                                        </span>
+                                    </td>
+                                    <td data-label="Período" class="date-cell">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        15/06/2025 a 15/07/2025
+                                    </td>
+                                    <td data-label="Ano PDP" class="year-cell">2025</td>
+                                    <td data-label="Ação">
+                                        <button class="action-btn enabled" onclick="window.location.href='tela02-v2.html'">
+                                            <i class="fas fa-arrow-right"></i>
+                                            Acessar
+                                        </button>
+                                    </td>
+                                </tr>
 
-                <!-- Organs Grid -->
-                <div class="organs-grid" id="organsGrid">
-                    <!-- Os cards serão gerados pelo JavaScript -->
+                                <!-- Secretaria de Estado da Educação - SP -->
+                                <tr data-category="estadual">
+                                    <td data-label="Órgão">
+                                        <div class="organ-name-cell">
+                                            <div class="organ-info-table">
+                                                <span class="organ-name-table">Secretaria de Estado da Educação - SP</span>
+                                                <span class="organ-code-table">SEE-SP</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-label="Status">
+                                        <span class="status-badge-table elaboration">
+                                            <i class="fas fa-pencil-alt"></i>
+                                            Em elaboração do PDP
+                                        </span>
+                                    </td>
+                                    <td data-label="Período" class="date-cell">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        01/08/2025 a 30/09/2025
+                                    </td>
+                                    <td data-label="Ano PDP" class="year-cell">2025</td>
+                                    <td data-label="Ação">
+                                        <button class="action-btn enabled" onclick="window.location.href='tela02-v2.html'">
+                                            <i class="fas fa-arrow-right"></i>
+                                            Acessar
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Prefeitura de São Paulo -->
+                                <tr data-category="municipal">
+                                    <td data-label="Órgão">
+                                        <div class="organ-name-cell">
+                                            <div class="organ-info-table">
+                                                <span class="organ-name-table">Prefeitura de São Paulo</span>
+                                                <span class="organ-code-table">PMSP</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-label="Status">
+                                        <span class="status-badge-table active">
+                                            <i class="fas fa-check-circle"></i>
+                                            Em execução pelo órgão
+                                        </span>
+                                    </td>
+                                    <td data-label="Período" class="date-cell">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        15/09/2024 a 15/10/2024
+                                    </td>
+                                    <td data-label="Ano PDP" class="year-cell">2024</td>
+                                    <td data-label="Ação">
+                                        <button class="action-btn disabled" disabled>
+                                            <i class="fas fa-ban"></i>
+                                            Indisponível
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Ministério da Fazenda -->
+                                <tr data-category="ministerio">
+                                    <td data-label="Órgão">
+                                        <div class="organ-name-cell">
+                                            <div class="organ-info-table">
+                                                <span class="organ-name-table">Ministério da Fazenda</span>
+                                                <span class="organ-code-table">MF</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-label="Status">
+                                        <span class="status-badge-table active">
+                                            <i class="fas fa-check-circle"></i>
+                                            Em execução pelo órgão
+                                        </span>
+                                    </td>
+                                    <td data-label="Período" class="date-cell">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        01/07/2025 a 31/12/2025
+                                    </td>
+                                    <td data-label="Ano PDP" class="year-cell">2024</td>
+                                    <td data-label="Ação">
+                                        <button class="action-btn disabled" disabled>
+                                            <i class="fas fa-ban"></i>
+                                            Indisponível
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Ministério da Justiça -->
+                                <tr data-category="ministerio">
+                                    <td data-label="Órgão">
+                                        <div class="organ-name-cell">
+                                            <div class="organ-info-table">
+                                                <span class="organ-name-table">Ministério da Justiça</span>
+                                                <span class="organ-code-table">MJ</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-label="Status">
+                                        <span class="status-badge-table expired">
+                                            <i class="fas fa-times-circle"></i>
+                                            Finalizado
+                                        </span>
+                                    </td>
+                                    <td data-label="Período" class="date-cell">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        01/08/2023 a 31/10/2023
+                                    </td>
+                                    <td data-label="Ano PDP" class="year-cell">2023</td>
+                                    <td data-label="Ação">
+                                        <button class="action-btn disabled" disabled>
+                                            <i class="fas fa-ban"></i>
+                                            Indisponível
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <i class="fas fa-search"></i>
+                        <h3>Nenhum órgão encontrado</h3>
+                        <p>Tente ajustar os filtros ou busca</p>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
-        // Dados dos órgãos
-        // Dados dos órgãos - SUBSTITUIR o array existente
-const organs = [
-    {
-        id: 1,
-        name: 'Ministério da Educação',
-        code: 'MEC',
-        category: 'ministerio',
-        status: 'active',
-        startDate: '01/07/2025',
-        endDate: '31/08/2025',
-        pdpsCount: 3,
-        available: true,
-        progress: 75,
-        icon: 'fas fa-graduation-cap'
-    },
-    {
-        id: 2,
-        name: 'Ministério da Saúde',
-        code: 'MS',
-        category: 'ministerio',
-        status: 'expired',
-        startDate: '15/06/2025',
-        endDate: '15/07/2025',
-        pdpsCount: 1,
-        available: false,
-        progress: 100,
-        icon: 'fas fa-heartbeat'
-    },
-    {
-        id: 3,
-        name: 'Secretaria de Estado da Educação - SP',
-        code: 'SEE-SP',
-        category: 'estadual',
-        status: 'active',
-        startDate: '01/08/2025',
-        endDate: '30/09/2025',
-        pdpsCount: 5,
-        available: true,
-        progress: 45,
-        icon: 'fas fa-school'
-    },
-    {
-        id: 4,
-        name: 'Prefeitura de São Paulo',
-        code: 'PMSP',
-        category: 'municipal',
-        status: 'upcoming',
-        startDate: '15/09/2025',
-        endDate: '15/10/2025',
-        pdpsCount: 0,
-        available: false,
-        progress: 0,
-        icon: 'fas fa-building'
-    },
-    // Adicione mais órgãos conforme necessário...
-];
-
-        // Função para obter o texto do status
-        function getStatusText(status) {
-            switch(status) {
-                case 'active': return 'PDP Disponível';
-                case 'expired': return 'Prazo Expirado';
-                case 'upcoming': return 'Em Breve';
-                default: return '';
-            }
-        }
-
-        // Função para obter o ícone do status
-        function getStatusIcon(status) {
-            const icons = {
-                active: '<i class="fas fa-check-circle status-icon active"></i>',
-                expired: '<i class="fas fa-times-circle status-icon expired"></i>',
-                upcoming: '<i class="fas fa-clock status-icon upcoming"></i>'
-            };
-            return icons[status] || '';
-        }
-
-        // Função para renderizar os cards dos órgãos
-        function renderOrgans() {
-            const container = document.getElementById('organsGrid');
-            
-            container.innerHTML = organs.map(organ => `
-                <div class="organ-card ${organ.available ? 'active' : ''}" data-organ-id="${organ.id}">
-                    <div class="organ-header">
-                        <div class="organ-info">
-                            <div class="organ-icon">
-                                <i class="${organ.icon}"></i>
-                            </div>
-                            <div class="organ-details">
-                                <h3>${organ.name}</h3>
-                                <div class="organ-code">${organ.code}</div>
-                            </div>
-                        </div>
-                        ${getStatusIcon(organ.status)}
-                    </div>
-                    
-                    <div class="status-badge ${organ.status}">
-                        ${getStatusText(organ.status)}
-                    </div>
-                    
-                    <div class="organ-info-section">
-                        <div class="detail-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>${organ.startDate} a ${organ.endDate}</span>
-                        </div>
-                        
-                        <div class="detail-item">
-                            <i class="fas fa-file-alt"></i>
-                            <span>${organ.pdpsCount} solicitações cadastradas</span>
-                        </div>
-                        
-                        
-                    </div>
-                    
-                    <button class="access-btn ${organ.available ? 'enabled' : 'disabled'}" 
-                            ${organ.available ? '' : 'disabled'} 
-                            onclick="window.location.href='tela02-v2.html'">
-                        <i class="fas fa-arrow-right"></i>
-                        ${organ.available ? 'Acessar Órgão' : 'Indisponível'}
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        // Função para acessar órgão
-        function accessOrgan(organId) {
-            const organ = organs.find(o => o.id === organId);
-            if (organ && organ.available) {
-                // Animação de loading
-                const button = event.target;
-                const originalContent = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando...';
-                button.disabled = true;
-                
-                setTimeout(() => {
-                    alert(`Acessando ${organ.name}...\n\nEm uma implementação real, isso levaria para a Tela 2!`);
-                    button.innerHTML = originalContent;
-                    button.disabled = false;
-                    // window.location.href = 'tela2.html?organ=' + organId;
-                }, 1500);
-            }
-        }
+        // Filtros e busca
+        let currentFilter = 'all';
 
         // Funções do menu lateral
         function toggleSidebar() {
@@ -1041,221 +1018,132 @@ const organs = [
             overlay.classList.remove('active');
         }
 
-        // Inicializar a página
-        document.addEventListener('DOMContentLoaded', function() {
-            renderOrgans();
-            
-            // Animação de entrada suave
-            const cards = document.querySelectorAll('.organ-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
+        // Função para filtrar tabela
+        function filterTable() {
+            const searchValue = document.getElementById('organSearch').value.toLowerCase();
+            const rows = document.querySelectorAll('#tableBody tr');
+            const emptyState = document.getElementById('emptyState');
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const category = row.dataset.category;
+                const organName = row.querySelector('.organ-name-table').textContent.toLowerCase();
+                const organCode = row.querySelector('.organ-code-table').textContent.toLowerCase();
                 
-                setTimeout(() => {
-                    card.style.transition = 'all 0.6s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 150);
+                const matchesCategory = currentFilter === 'all' || category === currentFilter;
+                const matchesSearch = searchValue === '' || 
+                    organName.includes(searchValue) || 
+                    organCode.includes(searchValue);
+                
+                if (matchesCategory && matchesSearch) {
+                    row.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    row.classList.add('hidden');
+                }
             });
 
-            // Animação das barras de progresso
-            setTimeout(() => {
-                const progressBars = document.querySelectorAll('.progress-fill');
-                progressBars.forEach(bar => {
-                    const width = bar.style.width;
-                    bar.style.width = '0%';
-                    setTimeout(() => {
-                        bar.style.width = width;
-                    }, 100);
-                });
-            }, 800);
+            // Atualizar contador
+            document.getElementById('resultsCount').textContent = 
+                `${visibleCount} órgão${visibleCount !== 1 ? 's' : ''} encontrado${visibleCount !== 1 ? 's' : ''}`;
 
-            // Funcionalidade do menu
-            const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all items
-                    menuItems.forEach(i => i.classList.remove('active'));
-                    
-                    // Add active class to clicked item
+            // Mostrar/ocultar empty state
+            if (visibleCount === 0) {
+                document.querySelector('.table-wrapper').style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                document.querySelector('.table-wrapper').style.display = 'block';
+                emptyState.style.display = 'none';
+            }
+        }
+
+        // Função para exportar para CSV
+        function exportToCSV() {
+            const rows = document.querySelectorAll('#tableBody tr');
+            let csvContent = 'Órgão,Código,Status,Período,Ano PDP\n';
+
+            rows.forEach(row => {
+                if (!row.classList.contains('hidden')) {
+                    const organName = row.querySelector('.organ-name-table').textContent;
+                    const organCode = row.querySelector('.organ-code-table').textContent;
+                    const status = row.querySelector('.status-badge-table').textContent.trim();
+                    const periodo = Array.from(row.querySelectorAll('td')[2].childNodes)
+                        .filter(node => node.nodeType === Node.TEXT_NODE)
+                        .map(node => node.textContent.trim())
+                        .join(' ');
+                    const year = row.querySelector('.year-cell').textContent;
+
+                    csvContent += `"${organName}","${organCode}","${status}","${periodo}","${year}"\n`;
+                }
+            });
+
+            // Criar blob e download
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', `orgaos_pdp_${new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filtros de categoria
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Handle arrow rotation for expandable items
-                    const arrow = this.querySelector('.menu-arrow');
-                    if (arrow) {
-                        this.classList.toggle('expanded');
-                    }
+                    currentFilter = this.dataset.filter;
+                    filterTable();
                 });
             });
-        });
-
-        // Fechar sidebar ao clicar fora em mobile
-        document.addEventListener('click', function(e) {
-            const sidebar = document.getElementById('sidebar');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            const overlay = document.querySelector('.sidebar-overlay');
             
-            if (window.innerWidth <= 768) {
-                if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
-                    closeSidebar();
-                }
-            }
-        });
-
-        // Adicionar funcionalidade de busca no sidebar
-        const searchInput = document.querySelector('.sidebar-search input');
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const menuItems = document.querySelectorAll('.menu-item');
+            // Busca por texto
+            const searchInput = document.getElementById('organSearch');
+            const clearSearch = document.getElementById('clearSearch');
             
-            menuItems.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                const parentLi = item.parentElement;
+            searchInput.addEventListener('input', function() {
+                filterTable();
+                clearSearch.style.display = this.value ? 'block' : 'none';
+            });
+            
+            clearSearch.addEventListener('click', function() {
+                searchInput.value = '';
+                this.style.display = 'none';
+                filterTable();
+                searchInput.focus();
+            });
+
+            // Fechar sidebar ao clicar fora em mobile
+            document.addEventListener('click', function(e) {
+                const sidebar = document.getElementById('sidebar');
+                const toggle = document.querySelector('.mobile-menu-toggle');
                 
-                if (text.includes(searchTerm)) {
-                    parentLi.style.display = 'block';
-                    item.style.opacity = '1';
-                } else {
-                    parentLi.style.display = searchTerm ? 'none' : 'block';
-                    item.style.opacity = searchTerm ? '0.5' : '1';
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+                        closeSidebar();
+                    }
+                }
+            });
+
+            // Responsividade
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    const sidebar = document.getElementById('sidebar');
+                    const overlay = document.querySelector('.sidebar-overlay');
+                    
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('active');
                 }
             });
         });
-
-        // Responsividade - ajustar sidebar em resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                const sidebar = document.getElementById('sidebar');
-                const overlay = document.querySelector('.sidebar-overlay');
-                
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-            }
-        });
-
-
-
-        // Variáveis globais para filtros
-let currentFilter = 'all';
-let currentSearch = '';
-
-// Função para filtrar órgãos
-function filterOrgans() {
-    const filteredOrgans = organs.filter(organ => {
-        const matchesCategory = currentFilter === 'all' || organ.category === currentFilter;
-        const matchesSearch = currentSearch === '' || 
-            organ.name.toLowerCase().includes(currentSearch.toLowerCase()) ||
-            organ.code.toLowerCase().includes(currentSearch.toLowerCase());
-        
-        return matchesCategory && matchesSearch;
-    });
-    
-    renderFilteredOrgans(filteredOrgans);
-    updateResultsCount(filteredOrgans.length);
-}
-
-// Função para renderizar órgãos filtrados
-function renderFilteredOrgans(filteredOrgans) {
-    const container = document.getElementById('organsGrid');
-    
-    if (filteredOrgans.length === 0) {
-        container.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-                <i class="fas fa-search" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 1rem;"></i>
-                <h3 style="color: #64748b; margin-bottom: 0.5rem;">Nenhum órgão encontrado</h3>
-                <p style="color: #94a3b8;">Tente ajustar os filtros ou busca</p>
-            </div>
-        `;
-        return;
-    }
-    
-    container.innerHTML = filteredOrgans.map(organ => `
-        <div class="organ-card ${organ.available ? 'active' : ''} fade-in" data-organ-id="${organ.id}">
-            <!-- Conteúdo do card igual ao original -->
-            <div class="organ-header">
-                <div class="organ-info">
-                    <div class="organ-icon">
-                        <i class="${organ.icon}"></i>
-                    </div>
-                    <div class="organ-details">
-                        <h3>${organ.name}</h3>
-                        <div class="organ-code">${organ.code}</div>
-                    </div>
-                </div>
-                ${getStatusIcon(organ.status)}
-            </div>
-            
-            <div class="status-badge ${organ.status}">
-                ${getStatusText(organ.status)}
-            </div>
-            
-            <div class="organ-info-section">
-                <div class="detail-item">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>${organ.startDate} a ${organ.endDate}</span>
-                </div>
-                
-                <div class="detail-item">
-                    <i class="fas fa-file-alt"></i>
-                    <span>${organ.pdpsCount} solicitações cadastradas</span>
-                </div>
-            </div>
-            
-            <button class="access-btn ${organ.available ? 'enabled' : 'disabled'}" 
-                    ${organ.available ? '' : 'disabled'} 
-                    onclick="accessOrgan(${organ.id})">
-                <i class="fas fa-arrow-right"></i>
-                ${organ.available ? 'Acessar Órgão' : 'Indisponível'}
-            </button>
-        </div>
-    `).join('');
-}
-
-// Função para atualizar contador de resultados
-function updateResultsCount(count) {
-    document.getElementById('resultsCount').textContent = `${count} órgão${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
-}
-
-// Event listeners para filtros - ADICIONAR no DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function() {
-    // ... código existente ...
-    
-    // Filtros de categoria
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            
-            currentFilter = this.dataset.filter;
-            filterOrgans();
-        });
-    });
-    
-    // Busca por texto
-    const searchInput = document.getElementById('organSearch');
-    const clearSearch = document.getElementById('clearSearch');
-    
-    searchInput.addEventListener('input', function() {
-        currentSearch = this.value;
-        filterOrgans();
-        
-        clearSearch.style.display = this.value ? 'block' : 'none';
-    });
-    
-    clearSearch.addEventListener('click', function() {
-        searchInput.value = '';
-        currentSearch = '';
-        this.style.display = 'none';
-        filterOrgans();
-        searchInput.focus();
-    });
-    
-    // Inicializar filtros
-    filterOrgans();
-});
     </script>
 </body>
 </html>

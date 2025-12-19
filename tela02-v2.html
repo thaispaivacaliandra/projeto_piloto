@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento PDP</title>
+    <title>Gerenciamento PDP - Protótipo</title>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,12 +13,22 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #f8fafc;
             color: #1e293b;
             display: flex;
             min-height: 100vh;
+        }
+
+        /* Acessibilidade - Focus Visible */
+        *:focus-visible {
+            outline: 3px solid #024248;
+            outline-offset: 2px;
         }
 
         /* Sidebar */
@@ -45,7 +55,7 @@
         .sidebar-logo {
             width: 40px;
             height: 40px;
-            background: white;
+            background: #024248;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -60,61 +70,18 @@
             font-weight: 600;
         }
 
-        .sidebar-search {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .sidebar-search input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            color: white;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-        }
-
-        .sidebar-search input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .sidebar-search input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .sidebar-search i {
-            position: absolute;
-            left: 0.875rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-
         .sidebar-menu {
             list-style: none;
         }
 
         .menu-label {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.8rem;
-            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 1rem;
             margin-top: 1.5rem;
-        }
-
-        .menu-label:first-child {
-            margin-top: 0;
-        }
-
-        .sidebar-menu li {
-            margin-bottom: 0.5rem;
         }
 
         .menu-item {
@@ -125,19 +92,24 @@
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             border-radius: 12px;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             position: relative;
             font-size: 0.95rem;
+            margin-bottom: 0.5rem;
         }
 
         .menu-item:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             color: white;
             transform: translateX(4px);
         }
 
+        .menu-item:focus-visible {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         .menu-item.active {
-            background: rgba(255, 255, 255, 0.15);
+            background: #007D7A;
             color: white;
         }
 
@@ -145,28 +117,6 @@
             width: 20px;
             text-align: center;
             font-size: 1rem;
-        }
-
-        .menu-badge {
-            margin-left: auto;
-            background: #ef4444;
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.25rem 0.5rem;
-            border-radius: 8px;
-            min-width: 20px;
-            text-align: center;
-        }
-
-        .menu-arrow {
-            margin-left: auto;
-            font-size: 0.8rem;
-            transition: transform 0.2s ease;
-        }
-
-        .menu-item.expanded .menu-arrow {
-            transform: rotate(90deg);
         }
 
         /* Main Content */
@@ -181,13 +131,13 @@
         .header {
             background: linear-gradient(135deg, #024248 0%, #007D7A 100%);
             padding: 2rem;
-            box-shadow: 0 4px 20px rgba(76, 81, 191, 0.15);
-            border-radius: 24px;
-            margin: 1rem 1rem 1rem 1rem;
+            box-shadow: 0 4px 20px rgba(2, 66, 72, 0.15);
+            border-radius: 0;
+            margin: 0;
         }
 
         .header-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -198,12 +148,11 @@
             width: 48px;
             height: 48px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.15);
-            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             color: white;
             cursor: pointer;
-            transition: all 0.2s ease;
-            backdrop-filter: blur(10px);
+            transition: all 0.25s ease;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -211,8 +160,13 @@
         }
 
         .back-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-2px);
+        }
+
+        .back-btn:active {
+            transform: translateY(0);
         }
 
         .header-info {
@@ -227,57 +181,69 @@
         }
 
         .header-subtitle {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             font-size: 1rem;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
+        /* Profile Tabs */
+        .profile-tabs {
             background: white;
-            padding: 1rem 0;
-            margin: 0 1rem;
+            margin: 1rem;
             border-radius: 16px;
+            padding: 1rem;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .breadcrumb-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .tab-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .profile-tab {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #cbd5e1;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #64748b;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.9rem;
         }
 
-        .breadcrumb a {
+        .profile-tab:hover {
+            border-color: #024248;
+            background: rgba(2, 66, 72, 0.05);
             color: #024248;
-            text-decoration: none;
-            transition: color 0.2s ease;
-            font-weight: 500;
         }
 
-        .breadcrumb a:hover {
-            color: #667eea;
+        .profile-tab:active {
+            transform: scale(0.98);
         }
 
-        .breadcrumb-separator {
-            color: #64748b;
-        }
-
-        .breadcrumb-current {
-            color: #1e293b;
-            font-weight: 600;
+        .profile-tab.active {
+            background: #024248;
+            border-color: #024248;
+            color: white;
         }
 
         /* Content Area */
         .content-area {
             flex: 1;
-            padding: 2rem;
+            padding: 0 2rem 2rem;
         }
 
         .content-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -287,7 +253,8 @@
             border-radius: 20px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 8px 25px rgba(76, 81, 191, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
             position: relative;
             overflow: hidden;
         }
@@ -299,7 +266,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: #024248;
+            background: #025257;
         }
 
         .status-content {
@@ -318,7 +285,7 @@
             width: 64px;
             height: 64px;
             border-radius: 16px;
-            background: #024248;
+            background: linear-gradient(135deg, #024248 0%, #007D7A 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -340,14 +307,14 @@
 
         .new-request-btn {
             padding: 1rem 1.5rem;
-            background: #007D7A;
+            background: linear-gradient(135deg, #024248 0%, #007D7A 100%);
             color: white;
             border: none;
             border-radius: 12px;
             font-weight: 600;
             font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -355,112 +322,11 @@
 
         .new-request-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(76, 81, 191, 0.3);
+            box-shadow: 0 8px 20px rgba(2, 66, 72, 0.3);
         }
 
-        .new-request-btn i {
-            transition: transform 0.2s ease;
-        }
-
-        .new-request-btn:hover i {
-            transform: rotate(90deg);
-        }
-
-        /* Configuration Panel */
-        .config-panel {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .config-title {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .config-title i {
-            color: #024248;
-            font-size: 1.2rem;
-        }
-
-        .config-title h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1e293b;
-        }
-
-        .config-options {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            padding: 1rem 1.5rem;
-            border-radius: 16px;
-            border: 2px solid #f1f5f9;
-            transition: all 0.2s ease;
-            flex: 1;
-        }
-
-        .radio-option:hover {
-            border-color: #024248;
-            background: rgba(76, 81, 191, 0.05);
-        }
-
-        .radio-option.selected {
-            border-color: #024248;
-            background: linear-gradient(135deg, rgba(76, 81, 191, 0.1) 0%, rgba(102, 126, 234, 0.1) 100%);
-        }
-
-        .radio-option input {
-            display: none;
-        }
-
-        .radio-custom {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            border: 2px solid #cbd5e1;
-            margin-right: 0.75rem;
-            position: relative;
-            transition: all 0.2s ease;
-        }
-
-        .radio-option.selected .radio-custom {
-            border-color: #4c51bf;
-            background: #4c51bf;
-        }
-
-        .radio-option.selected .radio-custom::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            background: white;
-            border-radius: 50%;
-        }
-
-        .radio-option i {
-            color: #4c51bf;
-            margin-right: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .radio-option span {
-            color: #1e293b;
-            font-weight: 500;
-            font-size: 0.95rem;
+        .new-request-btn:active {
+            transform: translateY(0);
         }
 
         /* Table Section */
@@ -482,6 +348,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .table-title {
@@ -491,7 +359,7 @@
         }
 
         .table-title i {
-            color: #4c51bf;
+            color: #007D7A;
             font-size: 1.2rem;
         }
 
@@ -505,6 +373,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .search-box {
@@ -514,17 +383,21 @@
         .search-box input {
             width: 280px;
             padding: 0.75rem 1rem 0.75rem 2.5rem;
-            border: 2px solid #e5e7eb;
+            border: 2px solid #cbd5e1;
             border-radius: 12px;
             font-size: 0.9rem;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             background: white;
+        }
+
+        .search-box input:hover {
+            border-color: #94a3b8;
         }
 
         .search-box input:focus {
             outline: none;
-            border-color: #4c51bf;
-            box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.1);
+            border-color: #024248;
+            box-shadow: 0 0 0 3px rgba(2, 66, 72, 0.1);
         }
 
         .search-box i {
@@ -535,24 +408,54 @@
             color: #64748b;
         }
 
-        .filter-select {
-            padding: 0.75rem 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            background: white;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            min-width: 180px;
+        /* Agrupamento Controls */
+        .grouping-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .filter-select:focus {
-            outline: none;
-            border-color: #4c51bf;
-            box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.1);
+        .grouping-btn {
+            padding: 0.75rem 1rem;
+            background: #d1fae5;
+            color: #059669;
+            border: 2px solid #a7f3d0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .grouping-btn:hover {
+            background: #a7f3d0;
+            color: #047857;
+            transform: translateY(-2px);
+        }
+
+        .grouping-btn:active {
+            transform: translateY(0);
+        }
+
+        .selection-info {
+            color: #059669;
+            font-weight: 600;
+            font-size: 0.85rem;
+            background: #d1fae5;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
         }
 
         /* Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
         .data-table {
             width: 100%;
             border-collapse: collapse;
@@ -560,84 +463,202 @@
 
         .data-table th {
             background: #f8fafc;
-            padding: 1.25rem 1.5rem;
+            padding: 1rem 1rem;
             text-align: left;
             font-weight: 600;
             color: #374151;
-            font-size: 0.9rem;
-            border-bottom: 2px solid #e5e7eb;
+            font-size: 0.85rem;
+            border-bottom: 2px solid #cbd5e1;
+            white-space: nowrap;
         }
 
         .data-table td {
-            padding: 1.5rem 1.5rem;
+            padding: 1.25rem 1rem;
             border-bottom: 1px solid #f1f5f9;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            vertical-align: middle;
         }
 
-        .data-table tr:hover {
-            background: linear-gradient(135deg, rgba(76, 81, 191, 0.02) 0%, rgba(102, 126, 234, 0.02) 100%);
+        .data-table tbody tr:hover {
+            background: rgba(76, 81, 191, 0.03);
         }
 
-        .priority-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 0.75rem;
+        /* Solo Item Row */
+        .solo-item-row {
+            background: white;
         }
 
-        .priority-high { background: #ef4444; }
-        .priority-medium { background: #f59e0b; }
-        .priority-low { background: #10b981; }
+        .solo-item-row:hover {
+            background: rgba(76, 81, 191, 0.05);
+        }
 
-        .code-cell {
-            display: flex;
+        .solo-indicator {
+            display: inline-flex;
             align-items: center;
-            font-family: 'Monaco', 'Consolas', monospace;
+            gap: 0.5rem;
+            color: #059669;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .solo-indicator::before {
+            content: '●';
+            font-size: 0.6rem;
+        }
+
+        /* Grouped Row Styles */
+        .group-header {
+            background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+            border: 1px solid #a7f3d0;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .group-header:hover {
+            background: linear-gradient(135deg, #dbeafe 0%, #cffafe 100%);
+            border-color: #007D7A;
+        }
+
+        .group-header td {
+            padding: 1.5rem 1.5rem;
+            border-bottom: 1px solid #a7f3d0;
             color: #1e293b;
         }
 
-        .type-badge {
-            padding: 0.5rem 0.875rem;
-            border-radius: 10px;
-            font-size: 0.8rem;
+        .group-toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            user-select: none;
+            width: 100%;
+        }
+
+        .group-toggle-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 125, 122, 0.15);
+            color: #007D7A;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .group-toggle-icon.collapsed {
+            transform: rotate(-90deg);
+        }
+
+        .group-header:hover .group-toggle-icon {
+            background: rgba(0, 125, 122, 0.25);
+            transform: scale(1.1);
+        }
+
+        .group-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .group-title {
+            font-size: 1rem;
             font-weight: 600;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .type-transversal {
-            background: linear-gradient(135deg, rgba(76, 81, 191, 0.2) 0%, rgba(102, 126, 234, 0.2) 100%);
-            color: #4c51bf;
-            border: 1px solid rgba(76, 81, 191, 0.3);
+        .group-title-icon {
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
 
-        .type-especifica {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(167, 139, 250, 0.2) 100%);
-            color: #7c3aed;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
-
-        .status-badge {
-            padding: 0.5rem 0.875rem;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .status-finalizado {
-            background: #dcfdf7;
+        .group-count {
+            background: rgba(5, 150, 105, 0.2);
             color: #059669;
-            border: 1px solid #a7f3d0;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid rgba(5, 150, 105, 0.3);
         }
 
-        .status-elaboracao {
-            background: #fef3c7;
-            color: #d97706;
-            border: 1px solid #fde68a;
+        .group-stats {
+            color: #059669;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .group-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .group-stat-icon {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .grouped-item {
+            max-height: 300px;
+            opacity: 1;
+            transition: all 0.25s ease;
+            overflow: hidden;
+            display: table-row;
+        }
+
+        .grouped-item.hide {
+            max-height: 0;
+            opacity: 0;
+            display: none;
+        }
+
+        .grouped-item td {
+            padding-left: 3.5rem;
+            background: rgba(0, 125, 122, 0.04);
+            border-bottom: 1px solid #d1fae5;
+            border-left: 3px solid #a7f3d0;
+        }
+
+        .grouped-item td:first-child {
+            border-left: 3px solid #a7f3d0;
+        }
+
+        .grouped-item:hover {
+            background: rgba(0, 125, 122, 0.08);
+        }
+
+        .nested-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #007D7A;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .nested-indicator::before {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 3px;
+            background: #007D7A;
+            border-radius: 50%;
         }
 
         .actions-cell {
             display: flex;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .action-btn {
@@ -646,51 +667,127 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-btn:active {
+            transform: translateY(0);
         }
 
         .action-view {
             background: #dbeafe;
-            color: #2563eb;
+            color: #0284c7;
+            border: 1px solid #7dd3fc;
         }
 
         .action-view:hover {
-            background: #bfdbfe;
-            transform: translateY(-2px);
-        }
-
-        .action-download {
-            background: #f3f4f6;
-            color: #6b7280;
-        }
-
-        .action-download:hover {
-            background: #e5e7eb;
-            transform: translateY(-2px);
+            background: #7dd3fc;
+            color: #0c4a6e;
         }
 
         .action-edit {
-            background: #dcfdf7;
+            background: #d1fae5;
             color: #059669;
+            border: 1px solid #a7f3d0;
         }
 
         .action-edit:hover {
-            background: #bbf7d0;
-            transform: translateY(-2px);
+            background: #a7f3d0;
+            color: #047857;
         }
 
         .action-delete {
-            background: #fef2f2;
+            background: #fee2e2;
             color: #dc2626;
+            border: 1px solid #fca5a5;
         }
 
         .action-delete:hover {
-            background: #fecaca;
-            transform: translateY(-2px);
+            background: #fca5a5;
+            color: #991b1b;
+        }
+
+        .action-accept {
+            background: #d1fae5;
+            color: #059669;
+            border: 1px solid #a7f3d0;
+        }
+
+        .action-accept:hover {
+            background: #a7f3d0;
+            color: #047857;
+        }
+
+        .action-reject {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fca5a5;
+        }
+
+        .action-reject:hover {
+            background: #fca5a5;
+            color: #991b1b;
+        }
+
+        .checkbox-cell {
+            text-align: center;
+        }
+
+        .checkbox-cell input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #024248;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            padding: 0.4rem 0.75rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            border: 1px solid;
+        }
+
+        .status-aceito {
+            background: #dcfdf7;
+            color: #0d9488;
+            border-color: #99f6e4;
+        }
+
+        .status-rejeitado {
+            background: #fee2e2;
+            color: #dc2626;
+            border-color: #fca5a5;
+        }
+
+        .status-pendente {
+            background: #fef3c7;
+            color: #92400e;
+            border-color: #fcd34d;
+        }
+
+        .status-priorizado {
+            background: #dcfdf7;
+            color: #0d9488;
+            border-color: #99f6e4;
+        }
+
+        .status-sem-priorizacao {
+            background: #fee2e2;
+            color: #dc2626;
+            border-color: #fca5a5;
         }
 
         /* Empty State */
@@ -713,98 +810,63 @@
             color: #374151;
         }
 
-        .empty-state p {
-            font-size: 1rem;
-            color: #6b7280;
-        }
-
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 1001;
-            background: rgba(45, 55, 72, 0.9);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 0.75rem;
-            font-size: 1.2rem;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Sidebar Overlay */
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        .sidebar-overlay.active {
-            display: block;
-        }
-
         /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 240px;
+            }
+
+            .main-content {
+                margin-left: 240px;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .search-box input {
+                width: 200px;
+            }
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
             }
 
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
             .main-content {
                 margin-left: 0;
             }
 
-            .mobile-menu-toggle {
-                display: block;
-            }
-
             .header {
-                margin: 0;
-                border-radius: 0;
-                padding: 3rem 1rem 2rem;
-            }
-
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .breadcrumb {
-                margin: 0;
-                border-radius: 0;
+                padding: 1.5rem 1rem;
             }
 
             .content-area {
-                padding: 1rem;
+                padding: 1rem 0.75rem;
+            }
+
+            .profile-tabs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .status-banner {
+                padding: 1.5rem;
             }
 
             .status-content {
                 flex-direction: column;
                 gap: 1.5rem;
-                text-align: center;
             }
 
-            .config-options {
-                flex-direction: column;
-                gap: 1rem;
+            .new-request-btn {
+                width: 100%;
             }
 
             .table-controls {
                 flex-direction: column;
-                gap: 1rem;
                 width: 100%;
             }
 
@@ -812,27 +874,25 @@
                 width: 100%;
             }
 
-            .table-section {
-                overflow-x: auto;
+            .data-table th {
+                font-size: 0.75rem;
             }
 
-            .data-table {
-                min-width: 700px;
+            .data-table td {
+                font-size: 0.75rem;
+            }
+
+            .action-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" onclick="closeSidebar()"></div>
-
     <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-logo">
                 <i class="fas fa-sparkles"></i>
@@ -840,22 +900,12 @@
             <h1 class="sidebar-title">Sistema PDP</h1>
         </div>
 
-        
-
         <ul class="sidebar-menu">
             <li class="menu-label">Menu</li>
             <li>
                 <a href="index.html" class="menu-item active">
                     <i class="fas fa-home"></i>
                     <span>Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="match.html" class="menu-item">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>Devolutivas</span>
-                    <span class="menu-badge">21</span>
-                    <i class="fas fa-chevron-right menu-arrow"></i>
                 </a>
             </li>
             <li>
@@ -867,10 +917,16 @@
             <li>
                 <a href="tela03-v2.html" class="menu-item">
                     <i class="fas fa-users"></i>
-                    <span>Cadastradar necessidade</span>
+                    <span>Cadastrar necessidade</span>
                 </a>
             </li>
-
+            <li>
+                <a href="match.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Devolutivas</span>
+                    <span class="menu-badge">21</span>
+                </a>
+            </li>
         </ul>
     </aside>
 
@@ -879,28 +935,31 @@
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <button class="back-btn" onclick="goBack()">
+                <button class="back-btn" onclick="goBack()" title="Voltar">
                     <i class="fas fa-arrow-left"></i>
                 </button>
                 <div class="header-info">
-                    <h1 class="header-title" id="organName">Ministério da Educação</h1>
+                    <h1 class="header-title">Ministério da Educação</h1>
                     <p class="header-subtitle">Dashboard de Gerenciamento PDP</p>
                 </div>
             </div>
         </header>
 
-        <!-- Breadcrumb -->
-        <nav class="breadcrumb">
-            <div class="breadcrumb-container">
-                <a href="#" onclick="goToHome()">
-                    <i class="fas fa-home"></i> Home
-                </a>
-                <span class="breadcrumb-separator">
-                    <i class="fas fa-chevron-right"></i>
-                </span>
-                <span class="breadcrumb-current" id="breadcrumbOrgan">Ministério da Educação</span>
-            </div>
-        </nav>
+        <!-- Profile Selection Tabs -->
+        <div class="profile-tabs">
+            <span class="tab-label">
+                <i class="fas fa-user-tag"></i> Visualizar como:
+            </span>
+            <button class="profile-tab active" data-profile="usuario" onclick="switchProfile('usuario')">
+                <i class="fas fa-user"></i> Usuário
+            </button>
+            <button class="profile-tab" data-profile="chefia" onclick="switchProfile('chefia')">
+                <i class="fas fa-user-tie"></i> Chefia PDP
+            </button>
+            <button class="profile-tab" data-profile="gerente" onclick="switchProfile('gerente')">
+                <i class="fas fa-user-shield"></i> Gerente Operacional
+            </button>
+        </div>
 
         <!-- Content Area -->
         <div class="content-area">
@@ -910,39 +969,17 @@
                     <div class="status-content">
                         <div class="status-info">
                             <div class="status-icon-wrapper">
-                                <i class="fas fa-check-circle"></i>
+                                <i class="fas fa-calendar-check"></i>
                             </div>
                             <div class="status-text">
-                                <h3 id="statusTitle">PDP em homologação até 31/08/2025</h3>
+                                <h3 id="statusTitle">PDP em elaboração</h3>
                                 <p id="statusSubtitle">Período: 01/07/2025 a 31/08/2025</p>
                             </div>
                         </div>
                         <button class="new-request-btn" onclick="window.location.href='tela03-v2.html'">
                             <i class="fas fa-plus"></i>
-                            Nova Solicitação
+                            Nova Necessidade
                         </button>
-                    </div>
-                </div>
-
-                <!-- Configuration Panel -->
-                <div class="config-panel">
-                    <div class="config-title">
-                        <i class="fas fa-users"></i>
-                        <h3>Configuração de Preenchimento</h3>
-                    </div>
-                    <div class="config-options">
-                        <label class="radio-option" id="option-individual">
-                            <input type="radio" name="fillType" value="individual">
-                            <div class="radio-custom"></div>
-                            <i class="fas fa-user"></i>
-                            <span>Individual (cada servidor preenche)</span>
-                        </label>
-                        <label class="radio-option" id="option-representative">
-                            <input type="radio" name="fillType" value="representative">
-                            <div class="radio-custom"></div>
-                            <i class="fas fa-users"></i>
-                            <span>Por Representante (gestor preenche tudo)</span>
-                        </label>
                     </div>
                 </div>
 
@@ -951,23 +988,30 @@
                     <div class="table-header">
                         <div class="table-header-content">
                             <div class="table-title">
-                                <i class="fas fa-chart-bar"></i>
-                                <h3>Solicitações Cadastradas</h3>
+                                <i class="fas fa-list"></i>
+                                <h3 id="tableMainTitle">Necessidades de Capacitação</h3>
                             </div>
                             <div class="table-controls">
                                 <div class="search-box">
                                     <i class="fas fa-search"></i>
-                                    <input type="text" placeholder="Buscar solicitações..." id="searchInput">
+                                    <input type="text" placeholder="Buscar..." id="searchInput" aria-label="Buscar necessidades">
                                 </div>
-                                <select class="filter-select" id="necessityFilter">
-                                    <option value="">Todas as necessidades</option>
-                                    <option value="Análise de sistemas">Análise de sistemas</option>
-                                    <option value="Gestão de projetos">Gestão de projetos</option>
-                                    <option value="Interpretar e analisar dados">Interpretar e analisar dados</option>
-                                    <option value="Planejamento estratégico">Planejamento estratégico</option>
-                                    <option value="Segurança da informação">Segurança da informação</option>
-                                    <option value="Liderança e desenvolvimento de equipes">Liderança e desenvolvimento de equipes</option>
-                                </select>
+                                <div id="groupingControls" class="grouping-controls" style="display: none;">
+                                    <span id="selectionInfo" class="selection-info" style="display: none;">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span id="selectionCount">0</span> selecionado(s)
+                                    </span>
+                                    <div id="selectionControls" class="grouping-controls" style="display: none;">
+                                        <button class="grouping-btn" id="customGroupBtn" onclick="customGroup()" title="Agrupar itens selecionados">
+                                            <i class="fas fa-object-group"></i>
+                                            Agrupar
+                                        </button>
+                                        <button class="grouping-btn" id="customUngroupBtn" onclick="customUngroup()" title="Desagrupar itens selecionados">
+                                            <i class="fas fa-object-ungroup"></i>
+                                            Desagrupar
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -981,333 +1025,1170 @@
     </main>
 
     <script>
-       // Dados mock do órgão selecionado
-const selectedOrgan = {
-    id: 1,
-    name: 'Ministério da Educação',
-    code: 'MEC',
-    status: 'active',
-    startDate: '01/07/2025',
-    endDate: '31/08/2025'
-};
+        // Dados com a nova estrutura baseada no formulário
+        let necessidadesData = [
+            // TRANSVERSAIS - Eixo: Liderança e Gestão de Pessoas
+            {
+                id: 1,
+                tipo: 'transversal',
+                eixoTematico: 'Liderança e Gestão de Pessoas',
+                tematica: 'Liderança Estratégica',
+                conteudo: null,
+                descricao: 'Aprender liderança estratégica',
+                duracao: 'media',
+                proficiencia: 'Médio',
+                uf: 'DF',
+                numeroPessoas: 15,
+                status: 'pendente',
+                priorizado: false,
+                groupId: null
+            },
+            {
+                id: 2,
+                tipo: 'transversal',
+                eixoTematico: 'Liderança e Gestão de Pessoas',
+                tematica: 'Liderança Estratégica',
+                conteudo: null,
+                descricao: '',
+                duracao: 'longa',
+                proficiencia: 'Especialista',
+                uf: 'SP',
+                numeroPessoas: 25,
+                status: 'pendente',
+                priorizado: false,
+                groupId: null
+            },
+            {
+                id: 3,
+                tipo: 'transversal',
+                eixoTematico: 'Liderança e Gestão de Pessoas',
+                tematica: 'Desenvolvimento de Equipes',
+                conteudo: null,
+                descricao: 'Desenvolvimento de equipes de alto desempenho',
+                duracao: 'media',
+                proficiencia: 'Médio',
+                uf: 'RJ',
+                numeroPessoas: 10,
+                status: 'aceito',
+                priorizado: true,
+                groupId: null
+            },
+            {
+                id: 4,
+                tipo: 'transversal',
+                eixoTematico: 'Comunicação e Relacionamento',
+                tematica: 'Comunicação Assertiva',
+                conteudo: null,
+                descricao: '',
+                duracao: 'curta',
+                proficiencia: 'Básico',
+                uf: 'MG',
+                numeroPessoas: 8,
+                status: 'pendente',
+                priorizado: false,
+                groupId: null
+            },
+            {
+                id: 5,
+                tipo: 'transversal',
+                eixoTematico: 'Inovação e Criatividade',
+                tematica: 'Pensamento Criativo',
+                conteudo: null,
+                descricao: 'Técnicas de pensamento criativo e inovação',
+                duracao: 'media',
+                proficiencia: 'Médio',
+                uf: 'DF',
+                numeroPessoas: 20,
+                status: 'aceito',
+                priorizado: true,
+                groupId: null
+            },
+            {
+                id: 6,
+                tipo: 'transversal',
+                eixoTematico: 'Competências Digitais',
+                tematica: 'Alfabetização Digital',
+                conteudo: null,
+                descricao: '',
+                duracao: 'curta',
+                proficiencia: 'Básico',
+                uf: 'BA',
+                numeroPessoas: 12,
+                status: 'rejeitado',
+                priorizado: false,
+                groupId: null
+            },
 
-// Dados das solicitações
-const pdpRequests = [
-    {
-        id: 1,
-        necessity: 'Análise de sistemas',
-        date: '10/06/2025',
-        type: 'Específica',
-        priority: 'high'
-    },
-    {
-        id: 2,
-        necessity: 'Gestão de projetos',
-        date: '12/06/2025',
-        type: 'Específica',
-        priority: 'medium'
-    },
-    {
-        id: 3,
-        necessity: 'Interpretar e analisar dados',
-        date: '12/06/2025',
-        type: 'Específica',
-        priority: 'low'
-    },
-    {
-        id: 4,
-        necessity: 'Planejamento estratégico',
-        date: '13/06/2025',
-        type: 'Específica',
-        priority: 'high'
-    },
-    {
-        id: 5,
-        necessity: 'Segurança da informação',
-        date: '14/06/2025',
-        type: 'Específica',
-        priority: 'medium'
-    },
-    {
-        id: 6,
-        necessity: 'Liderança e desenvolvimento de equipes',
-        date: '15/06/2025',
-        type: 'Específica',
-        priority: 'low'
-    }
-];
-
-// Função para renderizar a tabela
-function renderTable(data = pdpRequests) {
-    const container = document.getElementById('tableContainer');
-    
-    if (data.length === 0) {
-        container.innerHTML = `
-            <div class="empty-state">
-                <i class="fas fa-file-alt"></i>
-                <h4>Nenhuma solicitação encontrada</h4>
-                <p>Não há solicitações cadastradas ainda ou nenhuma corresponde aos filtros aplicados</p>
-            </div>
-        `;
-        return;
-    }
-
-    const tableHTML = `
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Necessidades</th>
-                    <th>Data Criação</th>
-                    <th>Tipo</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${data.map(request => `
-                    <tr>
-                        <td>
-                            <div class="code-cell">
-                                <div class="priority-indicator priority-${request.priority}"></div>
-                                ${request.necessity}
-                            </div>
-                        </td>
-                        <td>${request.date}</td>
-                        <td>
-                            <span class="type-badge type-${request.type.toLowerCase()}">
-                                ${request.type}
-                            </span>
-                        </td>
-                        <td>
-                            <div class="actions-cell">
-                                <button class="action-btn action-view" onclick="viewRequest(${request.id})" title="Visualizar">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="action-btn action-download" onclick="downloadPDF(${request.id})" title="Baixar PDF">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                                <button class="action-btn action-edit" onclick="editRequest(${request.id})" title="Editar">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="action-btn action-delete" onclick="deleteRequest(${request.id})" title="Excluir">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `).join('')}
-            </tbody>
-        </table>
-    `;
-    
-    container.innerHTML = tableHTML;
-}
-
-// Configurar opções de radio
-function setupRadioOptions() {
-    const options = document.querySelectorAll('.radio-option');
-    options.forEach(option => {
-        option.addEventListener('click', function() {
-            // Remove selected class from all options
-            options.forEach(opt => opt.classList.remove('selected'));
-            // Add selected class to clicked option
-            this.classList.add('selected');
-            // Check the radio input
-            this.querySelector('input').checked = true;
-            
-            console.log('Tipo de preenchimento selecionado:', this.querySelector('input').value);
-        });
-    });
-}
-
-// Função de busca
-function setupSearch() {
-    const searchInput = document.getElementById('searchInput');
-    const necessityFilter = document.getElementById('necessityFilter');
-    
-    function filterData() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const necessityTerm = necessityFilter.value;
-        
-        const filteredData = pdpRequests.filter(request => {
-            const matchesSearch = request.necessity.toLowerCase().includes(searchTerm) ||
-                                request.type.toLowerCase().includes(searchTerm);
-            const matchesNecessity = !necessityTerm || request.necessity === necessityTerm;
-            
-            return matchesSearch && matchesNecessity;
-        });
-        
-        renderTable(filteredData);
-    }
-    
-    if (searchInput) searchInput.addEventListener('input', filterData);
-    if (necessityFilter) necessityFilter.addEventListener('change', filterData);
-}
-
-// Funções de ação
-function viewRequest(id) {
-    console.log('Visualizar solicitação:', id);
-    alert(`Visualizando solicitação ID: ${id}`);
-}
-
-function downloadPDF(id) {
-    console.log('Download PDF:', id);
-    alert(`Baixando PDF da solicitação ID: ${id}`);
-}
-
-function editRequest(id) {
-    console.log('Editar solicitação:', id);
-    alert(`Editando solicitação ID: ${id}`);
-}
-
-function deleteRequest(id) {
-    if (confirm('Tem certeza que deseja excluir esta solicitação?')) {
-        console.log('Excluir solicitação:', id);
-        alert(`Solicitação ID: ${id} excluída com sucesso!`);
-        // Aqui você removeria o item da lista e re-renderizaria
-    }
-}
-
-function newRequest() {
-    console.log('Nova solicitação');
-    alert('Redirecionando para o formulário de nova solicitação...\n\nEm uma implementação real, isso levaria para a Tela 3!');
-    // window.location.href = 'tela3.html';
-}
-
-function goBack() {
-    console.log('Voltar para lista de órgãos');
-    alert('Voltando para a lista de órgãos...\n\nEm uma implementação real, isso voltaria para a Tela 1!');
-    // window.location.href = 'tela1.html';
-}
-
-function goToHome() {
-    console.log('Ir para Home');
-    goBack();
-}
-
-// Funções do menu lateral
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.querySelector('.sidebar-overlay');
-    
-    sidebar.classList.toggle('open');
-    overlay.classList.toggle('active');
-}
-
-function closeSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.querySelector('.sidebar-overlay');
-    
-    sidebar.classList.remove('open');
-    overlay.classList.remove('active');
-}
-
-// Inicialização
-document.addEventListener('DOMContentLoaded', function() {
-    // Configurar dados do órgão no header
-    const organNameEl = document.getElementById('organName');
-    const breadcrumbOrganEl = document.getElementById('breadcrumbOrgan');
-    const statusTitleEl = document.getElementById('statusTitle');
-    const statusSubtitleEl = document.getElementById('statusSubtitle');
-    
-    if (organNameEl) organNameEl.textContent = selectedOrgan.name;
-    if (breadcrumbOrganEl) breadcrumbOrganEl.textContent = selectedOrgan.name;
-    
-    // Configurar status banner
-    if (selectedOrgan.status === 'active') {
-        if (statusTitleEl) statusTitleEl.textContent = `Inscrições Abertas até ${selectedOrgan.endDate}`;
-        if (statusSubtitleEl) statusSubtitleEl.textContent = `Período: ${selectedOrgan.startDate} a ${selectedOrgan.endDate}`;
-    }
-    
-    // Configurar funcionalidades
-    setupRadioOptions();
-    setupSearch();
-    renderTable();
-    
-    // SETUP DO MENU LATERAL
-    const menuItems = document.querySelectorAll('.menu-item');
-    menuItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            // Verifica se o item tem href válido
-            const href = this.getAttribute('href');
-            
-            // Se não tem href ou href é #, previne o comportamento padrão
-            if (!href || href === '#') {
-                e.preventDefault();
+            // ESPECÍFICAS - Tema: Educação e Docência
+            {
+                id: 7,
+                tipo: 'especifica',
+                eixoTematico: null,
+                tematica: null,
+                temaGeral: 'Educação e Docência',
+                subtema: 'Metodologias Ativas',
+                conteudo: 'Aplicação de metodologias ativas em sala de aula com foco em engajamento de estudantes',
+                duracao: 'longa',
+                proficiencia: 'Graduação',
+                uf: 'SP',
+                numeroPessoas: 18,
+                status: 'pendente',
+                priorizado: false,
+                groupId: null
+            },
+            {
+                id: 8,
+                tipo: 'especifica',
+                eixoTematico: null,
+                tematica: null,
+                temaGeral: 'Educação e Docência',
+                subtema: 'Metodologias Ativas',
+                conteudo: 'Técnicas modernas de ensino com uso de tecnologia interativa',
+                duracao: 'media',
+                proficiencia: 'Médio',
+                uf: 'SP',
+                numeroPessoas: 22,
+                status: 'pendente',
+                priorizado: true,
+                groupId: null
+            },
+            {
+                id: 9,
+                tipo: 'especifica',
+                eixoTematico: null,
+                tematica: null,
+                temaGeral: 'Educação e Docência',
+                subtema: 'Educação Inclusiva',
+                conteudo: 'Práticas inclusivas para alunos com necessidades especiais',
+                duracao: 'media',
+                proficiencia: 'Médio',
+                uf: 'DF',
+                numeroPessoas: 14,
+                status: 'aceito',
+                priorizado: true,
+                groupId: null
+            },
+            {
+                id: 10,
+                tipo: 'especifica',
+                eixoTematico: null,
+                tematica: null,
+                temaGeral: 'Tecnologia da Informação',
+                subtema: 'Desenvolvimento de Software',
+                conteudo: 'Técnicas avançadas de desenvolvimento usando arquitetura limpa e padrões SOLID',
+                duracao: 'longa',
+                proficiencia: 'Especialização',
+                uf: 'RJ',
+                numeroPessoas: 16,
+                status: 'pendente',
+                priorizado: false,
+                groupId: null
+            },
+            {
+                id: 11,
+                tipo: 'especifica',
+                eixoTematico: null,
+                tematica: null,
+                temaGeral: 'Tecnologia da Informação',
+                subtema: 'Segurança da Informação',
+                conteudo: 'Implementação de políticas de segurança conforme LGPD',
+                duracao: 'media',
+                proficiencia: 'Médio',
+                uf: 'SP',
+                numeroPessoas: 11,
+                status: 'aceito',
+                priorizado: true,
+                groupId: null
+            },
+            {
+                id: 12,
+                tipo: 'especifica',
+                eixoTematico: null,
+                tematica: null,
+                temaGeral: 'Gestão e Administração',
+                subtema: 'Gestão de Projetos',
+                conteudo: 'Metodologia PMBOK e ágil para gestão de projetos complexos',
+                duracao: 'longa',
+                proficiencia: 'Mestrado',
+                uf: 'MG',
+                numeroPessoas: 19,
+                status: 'pendente',
+                priorizado: false,
+                groupId: null
+            },
+            {
+                id: 13,
+                tipo: 'especifica',
+                eixoTematico: null,
+                tematica: null,
+                temaGeral: 'Recursos Humanos',
+                subtema: 'Recrutamento',
+                conteudo: 'Técnicas modernas de recrutamento e seleção de talentos',
+                duracao: 'media',
+                proficiencia: 'Médio',
+                uf: 'BA',
+                numeroPessoas: 13,
+                status: 'pendente',
+                priorizado: true,
+                groupId: null
+            },
+            {
+                id: 14,
+                tipo: 'especifica',
+                eixoTematico: null,
+                tematica: null,
+                temaGeral: 'Financeiro e Orçamento',
+                subtema: 'Orçamento',
+                conteudo: 'Planejamento orçamentário e gestão financeira de projetos públicos',
+                duracao: 'media',
+                proficiencia: 'Médio',
+                uf: 'DF',
+                numeroPessoas: 9,
+                status: 'rejeitado',
+                priorizado: false,
+                groupId: null
+            },
+            {
+                id: 15,
+                tipo: 'especifica',
+                eixoTematico: null,
+                tematica: null,
+                temaGeral: 'Educação e Docência',
+                subtema: 'Avaliação Educacional',
+                conteudo: 'Métodos modernos de avaliação e feedback para estudantes',
+                duracao: 'curta',
+                proficiencia: 'Básico',
+                uf: 'SP',
+                numeroPessoas: 17,
+                status: 'aceito',
+                priorizado: false,
+                groupId: null
             }
-            // Se tem href válido (.html), deixa navegar normalmente
-            
-            // Remove active class from all items
-            menuItems.forEach(i => i.classList.remove('active'));
-            
-            // Add active class to clicked item
-            this.classList.add('active');
-            
-            // Handle arrow rotation for expandable items
-            const arrow = this.querySelector('.menu-arrow');
-            if (arrow) {
-                this.classList.toggle('expanded');
-            }
-        });
-    });
+        ];
 
-    // BUSCA NO SIDEBAR
-    const sidebarSearchInput = document.querySelector('.sidebar-search input');
-    if (sidebarSearchInput) {
-        sidebarSearchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const menuItems = document.querySelectorAll('.menu-item');
+        let currentProfile = 'usuario';
+        let customGroups = [];
+        let selectedItems = new Set();
+
+        // Função para trocar de perfil
+        function switchProfile(profile) {
+            currentProfile = profile;
+            selectedItems.clear();
             
-            menuItems.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                const parentLi = item.parentElement;
-                
-                if (text.includes(searchTerm)) {
-                    parentLi.style.display = 'block';
-                    item.style.opacity = '1';
-                } else {
-                    parentLi.style.display = searchTerm ? 'none' : 'block';
-                    item.style.opacity = searchTerm ? '0.5' : '1';
+            document.querySelectorAll('.profile-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-profile="${profile}"]`).classList.add('active');
+
+            const groupingControls = document.getElementById('groupingControls');
+            if (profile !== 'usuario') {
+                groupingControls.style.display = 'flex';
+            } else {
+                groupingControls.style.display = 'none';
+            }
+
+            renderTable();
+        }
+
+        // Organizar dados: grupos automáticos e itens soltos
+        function organizeData() {
+            const organizacao = {
+                transversais: {
+                    solos: [],
+                    grupos: {}
+                },
+                especificas: {
+                    solos: [],
+                    grupos: {}
+                }
+            };
+
+            // Separar por tipo
+            const transversais = necessidadesData.filter(n => n.tipo === 'transversal');
+            const especificas = necessidadesData.filter(n => n.tipo === 'especifica');
+
+            // Processar TRANSVERSAIS (agrupa por Eixo + Temática)
+            const eixoTematicaCount = {};
+            transversais.forEach(item => {
+                if (!item.groupId) {
+                    const key = `${item.eixoTematico}|${item.tematica}`;
+                    eixoTematicaCount[key] = (eixoTematicaCount[key] || 0) + 1;
                 }
             });
-        });
-    }
-    
-    // Animações de entrada
-    const elements = document.querySelectorAll('.status-banner, .config-panel, .table-section');
-    elements.forEach((element, index) => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        
-        setTimeout(() => {
-            element.style.transition = 'all 0.6s ease';
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }, index * 150);
-    });
-});
 
-// Fechar sidebar ao clicar fora em mobile
-document.addEventListener('click', function(e) {
-    const sidebar = document.getElementById('sidebar');
-    const toggle = document.querySelector('.mobile-menu-toggle');
-    
-    if (window.innerWidth <= 768) {
-        if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
-            closeSidebar();
+            transversais.forEach(item => {
+                if (item.groupId) {
+                    const groupId = item.groupId;
+                    if (!organizacao.transversais.grupos[groupId]) {
+                        organizacao.transversais.grupos[groupId] = {
+                            items: [],
+                            isCustom: true,
+                            name: null
+                        };
+                    }
+                    organizacao.transversais.grupos[groupId].items.push(item);
+                } else {
+                    const key = `${item.eixoTematico}|${item.tematica}`;
+                    if (eixoTematicaCount[key] === 1) {
+                        organizacao.transversais.solos.push(item);
+                    } else {
+                        if (!organizacao.transversais.grupos[key]) {
+                            organizacao.transversais.grupos[key] = {
+                                items: [],
+                                isCustom: false,
+                                name: `${item.eixoTematico} - ${item.tematica}`,
+                                eixo: item.eixoTematico,
+                                tematica: item.tematica
+                            };
+                        }
+                        organizacao.transversais.grupos[key].items.push(item);
+                    }
+                }
+            });
+
+            // Processar ESPECÍFICAS (agrupa por Tema Geral + Subtema)
+            const temaSubtemaCount = {};
+            especificas.forEach(item => {
+                if (!item.groupId) {
+                    const key = `${item.temaGeral}|${item.subtema}`;
+                    temaSubtemaCount[key] = (temaSubtemaCount[key] || 0) + 1;
+                }
+            });
+
+            especificas.forEach(item => {
+                if (item.groupId) {
+                    const groupId = item.groupId;
+                    if (!organizacao.especificas.grupos[groupId]) {
+                        organizacao.especificas.grupos[groupId] = {
+                            items: [],
+                            isCustom: true,
+                            name: null
+                        };
+                    }
+                    organizacao.especificas.grupos[groupId].items.push(item);
+                } else {
+                    const key = `${item.temaGeral}|${item.subtema}`;
+                    if (temaSubtemaCount[key] === 1) {
+                        organizacao.especificas.solos.push(item);
+                    } else {
+                        if (!organizacao.especificas.grupos[key]) {
+                            organizacao.especificas.grupos[key] = {
+                                items: [],
+                                isCustom: false,
+                                name: `${item.temaGeral} - ${item.subtema}`,
+                                tema: item.temaGeral,
+                                subtema: item.subtema
+                            };
+                        }
+                        organizacao.especificas.grupos[key].items.push(item);
+                    }
+                }
+            });
+
+            return organizacao;
         }
-    }
-});
 
-// Responsividade - ajustar sidebar em resize
-window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.querySelector('.sidebar-overlay');
-        
-        sidebar.classList.remove('open');
-        overlay.classList.remove('active');
-    }
-});
+        // Agrupar itens selecionados
+        function customGroup() {
+            if (selectedItems.size < 2) {
+                showError('Selecione pelo menos 2 itens para agrupar');
+                return;
+            }
+
+            const itemsToGroup = Array.from(selectedItems).map(id => 
+                necessidadesData.find(item => item.id === id)
+            ).filter(item => item);
+
+            if (itemsToGroup.length === 0) return;
+
+            const customGroupId = Date.now();
+            itemsToGroup.forEach(item => {
+                item.groupId = customGroupId;
+            });
+
+            selectedItems.clear();
+            renderTable();
+            updateCheckboxUI();
+            showSuccess(`${itemsToGroup.length} necessidade(s) agrupada(s) com sucesso!`);
+        }
+
+        // Desagrupar itens selecionados
+        function customUngroup() {
+            if (selectedItems.size === 0) {
+                showError('Selecione itens para desagrupar');
+                return;
+            }
+
+            const itemsToUngroup = Array.from(selectedItems).map(id => 
+                necessidadesData.find(item => item.id === id)
+            ).filter(item => item);
+
+            itemsToUngroup.forEach(item => {
+                item.groupId = null;
+            });
+
+            selectedItems.clear();
+            renderTable();
+            updateCheckboxUI();
+            showSuccess(`${itemsToUngroup.length} necessidade(s) desagrupada(s)!`);
+        }
+
+        // Atualizar UI quando checkbox é marcado/desmarcado
+        function toggleItemSelection(id) {
+            if (selectedItems.has(id)) {
+                selectedItems.delete(id);
+            } else {
+                selectedItems.add(id);
+            }
+            updateCheckboxUI();
+        }
+
+        // Atualizar visibilidade dos controles de seleção
+        function updateCheckboxUI() {
+            const selectionInfo = document.getElementById('selectionInfo');
+            const selectionControls = document.getElementById('selectionControls');
+            const selectionCount = document.getElementById('selectionCount');
+
+            if (selectedItems.size > 0) {
+                selectionInfo.style.display = 'flex';
+                selectionCount.textContent = selectedItems.size;
+                if (selectedItems.size >= 2) {
+                    selectionControls.style.display = 'flex';
+                } else {
+                    selectionControls.style.display = 'none';
+                }
+            } else {
+                selectionInfo.style.display = 'none';
+                selectionControls.style.display = 'none';
+            }
+
+            document.querySelectorAll('.checkbox-cell input[type="checkbox"]').forEach(checkbox => {
+                const itemId = parseInt(checkbox.getAttribute('data-item-id') || 0);
+                checkbox.checked = selectedItems.has(itemId);
+            });
+        }
+
+        // Renderizar tabela
+        function renderTable() {
+            const container = document.getElementById('tableContainer');
+            
+            if (necessidadesData.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <h4>Nenhuma necessidade cadastrada</h4>
+                        <p>Comece adicionando sua primeira necessidade de capacitação</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const organizacao = organizeData();
+            let tableHTML = '';
+
+            if (currentProfile === 'usuario') {
+                tableHTML = renderUsuarioTable(organizacao);
+            } else if (currentProfile === 'chefia') {
+                tableHTML = renderChefiaTable(organizacao);
+            } else if (currentProfile === 'gerente') {
+                tableHTML = renderGerenteTable(organizacao);
+            }
+
+            container.innerHTML = tableHTML;
+
+            // Add listeners para checkboxes
+            document.querySelectorAll('.checkbox-cell input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const itemId = parseInt(this.getAttribute('data-item-id'));
+                    toggleItemSelection(itemId);
+                });
+            });
+
+            // Add listeners para toggle de grupos
+            document.querySelectorAll('[data-toggle-group]').forEach(element => {
+                element.addEventListener('click', function(e) {
+                    const groupId = this.getAttribute('data-toggle-group');
+                    if (!e.target.closest('input')) {
+                        toggleGroup(groupId);
+                    }
+                });
+            });
+
+            updateCheckboxUI();
+        }
+
+        // Renderizar tabela USUÁRIO
+        function renderUsuarioTable(organizacao) {
+            let html = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Eixo/Tema</th>
+                            <th>Temática/Subtema</th>
+                            <th>Descrição</th>
+                            <th>UF / Nº Pessoas</th>
+                            <th style="text-align: center; width: 120px;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            // TRANSVERSAIS - Solos
+            organizacao.transversais.solos.forEach(item => {
+                html += renderTransversalRow(item, false);
+            });
+
+            // TRANSVERSAIS - Grupos
+            Object.entries(organizacao.transversais.grupos).forEach(([groupKey, grupo]) => {
+                grupo.items.forEach(item => {
+                    html += renderTransversalRow(item, false);
+                });
+            });
+
+            // ESPECÍFICAS - Solos
+            organizacao.especificas.solos.forEach(item => {
+                html += renderEspecificaRow(item, false);
+            });
+
+            // ESPECÍFICAS - Grupos
+            Object.entries(organizacao.especificas.grupos).forEach(([groupKey, grupo]) => {
+                grupo.items.forEach(item => {
+                    html += renderEspecificaRow(item, false);
+                });
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            `;
+
+            return html;
+        }
+
+        // Renderizar tabela CHEFIA
+        function renderChefiaTable(organizacao) {
+            let html = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center; width: 50px;">Sel.</th>
+                            <th>Tipo</th>
+                            <th>Eixo/Tema</th>
+                            <th>Temática/Subtema</th>
+                            <th>Descrição</th>
+                            <th>UF / Nº Pessoas</th>
+                            <th style="text-align: center; width: 100px;">Status</th>
+                            <th style="text-align: center; width: 120px;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            // TRANSVERSAIS - GRUPOS PRIMEIRO
+            Object.entries(organizacao.transversais.grupos).forEach(([groupKey, grupo]) => {
+                html += renderGroupHeaderRow(groupKey, grupo, 'transversal', 'chefia');
+                grupo.items.forEach(item => {
+                    html += renderTransversalRowGrouped(item, groupKey, 'chefia');
+                });
+            });
+
+            // ESPECÍFICAS - GRUPOS PRIMEIRO
+            Object.entries(organizacao.especificas.grupos).forEach(([groupKey, grupo]) => {
+                html += renderGroupHeaderRow(groupKey, grupo, 'especifica', 'chefia');
+                grupo.items.forEach(item => {
+                    html += renderEspecificaRowGrouped(item, groupKey, 'chefia');
+                });
+            });
+
+            // TRANSVERSAIS - SOLOS
+            organizacao.transversais.solos.forEach(item => {
+                html += renderTransversalRowWithCheckbox(item, 'chefia');
+            });
+
+            // ESPECÍFICAS - SOLOS
+            organizacao.especificas.solos.forEach(item => {
+                html += renderEspecificaRowWithCheckbox(item, 'chefia');
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            `;
+
+            return html;
+        }
+
+        // Renderizar tabela GERENTE
+        function renderGerenteTable(organizacao) {
+            let html = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center; width: 50px;">Sel.</th>
+                            <th>Tipo</th>
+                            <th>Eixo/Tema</th>
+                            <th>Temática/Subtema</th>
+                            <th>Descrição</th>
+                            <th>UF / Nº Pessoas</th>
+                            <th style="text-align: center; width: 120px;">Priorização</th>
+                            <th style="text-align: center; width: 120px;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            // TRANSVERSAIS - GRUPOS PRIMEIRO
+            Object.entries(organizacao.transversais.grupos).forEach(([groupKey, grupo]) => {
+                html += renderGroupHeaderRowGerente(groupKey, grupo, 'transversal');
+                grupo.items.forEach(item => {
+                    html += renderTransversalRowGrouped(item, groupKey, 'gerente');
+                });
+            });
+
+            // ESPECÍFICAS - GRUPOS PRIMEIRO
+            Object.entries(organizacao.especificas.grupos).forEach(([groupKey, grupo]) => {
+                html += renderGroupHeaderRowGerente(groupKey, grupo, 'especifica');
+                grupo.items.forEach(item => {
+                    html += renderEspecificaRowGrouped(item, groupKey, 'gerente');
+                });
+            });
+
+            // TRANSVERSAIS - SOLOS
+            organizacao.transversais.solos.forEach(item => {
+                html += renderTransversalRowWithCheckbox(item, 'gerente');
+            });
+
+            // ESPECÍFICAS - SOLOS
+            organizacao.especificas.solos.forEach(item => {
+                html += renderEspecificaRowWithCheckbox(item, 'gerente');
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            `;
+
+            return html;
+        }
+
+        // ===== FUNCTIONS DE RENDER PARA LINHAS =====
+        function renderTransversalRow(item, isGrouped) {
+            const descricao = item.descricao || '';
+            return `
+                <tr class="${isGrouped ? 'grouped-item hide' : 'solo-item-row'}" ${isGrouped ? `data-group="${item.groupId}"` : ''}>
+                    <td>Transversal</td>
+                    <td>${item.eixoTematico}</td>
+                    <td><span class="solo-indicator">${item.tematica}</span></td>
+                    <td>${descricao}</td>
+                    <td>${item.uf} / ${item.numeroPessoas}</td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="action-btn action-view" onclick="viewItem(${item.id})" title="Visualizar">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn action-edit" onclick="editItem(${item.id})" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn action-delete" onclick="deleteItem(${item.id})" title="Excluir">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function renderEspecificaRow(item, isGrouped) {
+            return `
+                <tr class="${isGrouped ? 'grouped-item hide' : 'solo-item-row'}" ${isGrouped ? `data-group="${item.groupId}"` : ''}>
+                    <td>Específica</td>
+                    <td>${item.temaGeral}</td>
+                    <td><span class="solo-indicator">${item.subtema}</span></td>
+                    <td>${item.conteudo}</td>
+                    <td>${item.uf} / ${item.numeroPessoas}</td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="action-btn action-view" onclick="viewItem(${item.id})" title="Visualizar">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn action-edit" onclick="editItem(${item.id})" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn action-delete" onclick="deleteItem(${item.id})" title="Excluir">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function renderTransversalRowWithCheckbox(item, profile) {
+            const descricao = item.descricao || '';
+            const statusHtml = profile === 'gerente' 
+                ? `<span class="status-badge status-${item.priorizado ? 'priorizado' : 'sem-priorizacao'}">
+                    ${item.priorizado ? 'Priorizado' : 'Sem Priorização'}
+                  </span>`
+                : `<span class="status-badge status-${item.status}">
+                    ${item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                  </span>`;
+
+            return `
+                <tr class="solo-item-row">
+                    <td class="checkbox-cell">
+                        <input type="checkbox" data-item-id="${item.id}" title="Selecionar">
+                    </td>
+                    <td>Transversal</td>
+                    <td>${item.eixoTematico}</td>
+                    <td><span class="solo-indicator">${item.tematica}</span></td>
+                    <td>${descricao}</td>
+                    <td>${item.uf} / ${item.numeroPessoas}</td>
+                    <td style="text-align: center;">${statusHtml}</td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="action-btn action-view" onclick="viewItem(${item.id})" title="Visualizar">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn action-edit" onclick="editItem(${item.id})" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            ${profile === 'chefia' 
+                                ? `<button class="action-btn action-accept" onclick="acceptGroupOrItem('item', ${item.id})" title="Aceitar">
+                                    <i class="fas fa-check"></i>
+                                  </button>
+                                  <button class="action-btn action-reject" onclick="rejectGroupOrItem('item', ${item.id})" title="Rejeitar">
+                                    <i class="fas fa-times"></i>
+                                  </button>`
+                                : `<button class="action-btn ${item.priorizado ? 'action-reject' : 'action-accept'}" 
+                                    onclick="prioritizeGroupOrItem('item', ${item.id})" 
+                                    title="${item.priorizado ? 'Remover prioridade' : 'Priorizar'}">
+                                    <i class="fas ${item.priorizado ? 'fa-star-half-alt' : 'fa-star'}"></i>
+                                  </button>`
+                            }
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function renderEspecificaRowWithCheckbox(item, profile) {
+            const statusHtml = profile === 'gerente' 
+                ? `<span class="status-badge status-${item.priorizado ? 'priorizado' : 'sem-priorizacao'}">
+                    ${item.priorizado ? 'Priorizado' : 'Sem Priorização'}
+                  </span>`
+                : `<span class="status-badge status-${item.status}">
+                    ${item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                  </span>`;
+
+            return `
+                <tr class="solo-item-row">
+                    <td class="checkbox-cell">
+                        <input type="checkbox" data-item-id="${item.id}" title="Selecionar">
+                    </td>
+                    <td>Específica</td>
+                    <td>${item.temaGeral}</td>
+                    <td><span class="solo-indicator">${item.subtema}</span></td>
+                    <td>${item.conteudo}</td>
+                    <td>${item.uf} / ${item.numeroPessoas}</td>
+                    <td style="text-align: center;">${statusHtml}</td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="action-btn action-view" onclick="viewItem(${item.id})" title="Visualizar">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn action-edit" onclick="editItem(${item.id})" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            ${profile === 'chefia' 
+                                ? `<button class="action-btn action-accept" onclick="acceptGroupOrItem('item', ${item.id})" title="Aceitar">
+                                    <i class="fas fa-check"></i>
+                                  </button>
+                                  <button class="action-btn action-reject" onclick="rejectGroupOrItem('item', ${item.id})" title="Rejeitar">
+                                    <i class="fas fa-times"></i>
+                                  </button>`
+                                : `<button class="action-btn ${item.priorizado ? 'action-reject' : 'action-accept'}" 
+                                    onclick="prioritizeGroupOrItem('item', ${item.id})" 
+                                    title="${item.priorizado ? 'Remover prioridade' : 'Priorizar'}">
+                                    <i class="fas ${item.priorizado ? 'fa-star-half-alt' : 'fa-star'}"></i>
+                                  </button>`
+                            }
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function renderTransversalRowGrouped(item, groupId, profile) {
+            const descricao = item.descricao || '';
+            const statusHtml = profile === 'gerente' 
+                ? `<span class="status-badge status-${item.priorizado ? 'priorizado' : 'sem-priorizacao'}">
+                    ${item.priorizado ? 'Priorizado' : 'Sem Priorização'}
+                  </span>`
+                : `<span class="status-badge status-${item.status}">
+                    ${item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                  </span>`;
+
+            return `
+                <tr class="grouped-item hide" data-group="${groupId}">
+                    <td class="checkbox-cell">
+                        <input type="checkbox" data-item-id="${item.id}" title="Selecionar">
+                    </td>
+                    <td>Transversal</td>
+                    <td><span class="nested-indicator">${item.eixoTematico}</span></td>
+                    <td>${item.tematica}</td>
+                    <td>${descricao}</td>
+                    <td>${item.uf} / ${item.numeroPessoas}</td>
+                    <td style="text-align: center;">${statusHtml}</td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="action-btn action-view" onclick="viewItem(${item.id})" title="Visualizar">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn action-edit" onclick="editItem(${item.id})" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function renderEspecificaRowGrouped(item, groupId, profile) {
+            const statusHtml = profile === 'gerente' 
+                ? `<span class="status-badge status-${item.priorizado ? 'priorizado' : 'sem-priorizacao'}">
+                    ${item.priorizado ? 'Priorizado' : 'Sem Priorização'}
+                  </span>`
+                : `<span class="status-badge status-${item.status}">
+                    ${item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                  </span>`;
+
+            return `
+                <tr class="grouped-item hide" data-group="${groupId}">
+                    <td class="checkbox-cell">
+                        <input type="checkbox" data-item-id="${item.id}" title="Selecionar">
+                    </td>
+                    <td>Específica</td>
+                    <td><span class="nested-indicator">${item.temaGeral}</span></td>
+                    <td>${item.subtema}</td>
+                    <td>${item.conteudo}</td>
+                    <td>${item.uf} / ${item.numeroPessoas}</td>
+                    <td style="text-align: center;">${statusHtml}</td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="action-btn action-view" onclick="viewItem(${item.id})" title="Visualizar">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn action-edit" onclick="editItem(${item.id})" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function renderGroupHeaderRow(groupKey, grupo, tipo, profile) {
+            const totalPessoas = grupo.items.reduce((sum, item) => sum + item.numeroPessoas, 0);
+            const allAccepted = grupo.items.every(item => item.status === 'aceito');
+            const allRejected = grupo.items.every(item => item.status === 'rejeitado');
+            let groupStatus = 'pendente';
+            if (allAccepted) groupStatus = 'aceito';
+            if (allRejected) groupStatus = 'rejeitado';
+
+            const tipoLabel = tipo === 'transversal' ? 'Transversal' : 'Específica';
+            const tipoInfo = tipo === 'transversal' 
+                ? `${grupo.eixo} - ${grupo.tematica}`
+                : `${grupo.tema} - ${grupo.subtema}`;
+
+            return `
+                <tr class="group-header" data-toggle-group="${groupKey}">
+                    <td class="checkbox-cell">
+                        <div class="group-toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </td>
+                    <td>${tipoLabel}</td>
+                    <td>${tipo === 'transversal' ? grupo.eixo : grupo.tema}</td>
+                    <td>
+                        <div class="group-info">
+                            <div class="group-title">
+                                ${grupo.isCustom ? '📌' : ''} ${tipo === 'transversal' ? grupo.tematica : grupo.subtema}
+                            </div>
+                            <span class="group-count">
+                                ${grupo.items.length} item${grupo.items.length !== 1 ? 's' : ''}
+                            </span>
+                        </div>
+                    </td>
+                    <td> - </td>
+                    <td>
+                        <div class="group-stats">
+                            <div class="group-stat-item">
+                                <i class="fas fa-users group-stat-icon"></i>
+                                <strong>${totalPessoas}</strong>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="text-align: center;">
+                        <span class="status-badge status-${groupStatus}">
+                            ${groupStatus.charAt(0).toUpperCase() + groupStatus.slice(1)}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="action-btn action-accept" onclick="acceptGroupOrItem('group', '${groupKey}')" title="Aceitar grupo">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="action-btn action-reject" onclick="rejectGroupOrItem('group', '${groupKey}')" title="Rejeitar grupo">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function renderGroupHeaderRowGerente(groupKey, grupo, tipo) {
+            const totalPessoas = grupo.items.reduce((sum, item) => sum + item.numeroPessoas, 0);
+            const allPrioritized = grupo.items.every(item => item.priorizado);
+
+            const tipoLabel = tipo === 'transversal' ? 'Transversal' : 'Específica';
+
+            return `
+                <tr class="group-header" data-toggle-group="${groupKey}">
+                    <td class="checkbox-cell">
+                        <div class="group-toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </td>
+                    <td>${tipoLabel}</td>
+                    <td>${tipo === 'transversal' ? grupo.eixo : grupo.tema}</td>
+                    <td>
+                        <div class="group-info">
+                            <div class="group-title">
+                                ${grupo.isCustom ? '📌' : ''} ${tipo === 'transversal' ? grupo.tematica : grupo.subtema}
+                            </div>
+                            <span class="group-count">
+                                ${grupo.items.length} item${grupo.items.length !== 1 ? 's' : ''}
+                            </span>
+                        </div>
+                    </td>
+                    <td> - </td>
+                    <td>
+                        <div class="group-stats">
+                            <div class="group-stat-item">
+                                <i class="fas fa-users group-stat-icon"></i>
+                                <strong>${totalPessoas}</strong>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="text-align: center;">
+                        <span class="status-badge ${allPrioritized ? 'status-priorizado' : 'status-sem-priorizacao'}">
+                            ${allPrioritized ? 'Priorizado' : 'Sem Priorização'}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="action-btn action-accept" onclick="prioritizeGroupOrItem('group', '${groupKey}')" title="Priorizar grupo">
+                                <i class="fas fa-star"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Toggle de grupo
+        function toggleGroup(groupId) {
+            const groupRows = document.querySelectorAll(`[data-group="${groupId}"]`);
+            const toggleIcon = document.querySelector(`[data-toggle-group="${groupId}"] .group-toggle-icon`);
+
+            groupRows.forEach(row => {
+                row.classList.toggle('hide');
+            });
+
+            if (toggleIcon) {
+                toggleIcon.classList.toggle('collapsed');
+            }
+        }
+
+        // Ações a nível de grupo ou item para Chefia
+        function acceptGroupOrItem(type, id) {
+            if (type === 'group') {
+                let items = [];
+                // Procurar itens do grupo
+                necessidadesData.forEach(item => {
+                    // Se for um groupId customizado (inteiro)
+                    if (item.groupId && item.groupId === parseInt(id)) {
+                        items.push(item);
+                    } else if (!item.groupId) {
+                        // Se for um grupo automático (string com |)
+                        if (id.includes('|')) {
+                            const parts = id.split('|');
+                            if (item.tipo === 'transversal' && item.eixoTematico === parts[0] && item.tematica === parts[1]) {
+                                items.push(item);
+                            } else if (item.tipo === 'especifica' && item.temaGeral === parts[0] && item.subtema === parts[1]) {
+                                items.push(item);
+                            }
+                        }
+                    }
+                });
+                items.forEach(item => item.status = 'aceito');
+                showSuccess(`${items.length} necessidade(s) aceita(s)!`);
+            } else {
+                const item = necessidadesData.find(n => n.id === id);
+                if (item) {
+                    item.status = 'aceito';
+                    showSuccess('Necessidade aceita!');
+                }
+            }
+            renderTable();
+        }
+
+        function rejectGroupOrItem(type, id) {
+            if (type === 'group') {
+                let items = [];
+                // Procurar itens do grupo
+                necessidadesData.forEach(item => {
+                    // Se for um groupId customizado (inteiro)
+                    if (item.groupId && item.groupId === parseInt(id)) {
+                        items.push(item);
+                    } else if (!item.groupId) {
+                        // Se for um grupo automático (string com |)
+                        if (id.includes('|')) {
+                            const parts = id.split('|');
+                            if (item.tipo === 'transversal' && item.eixoTematico === parts[0] && item.tematica === parts[1]) {
+                                items.push(item);
+                            } else if (item.tipo === 'especifica' && item.temaGeral === parts[0] && item.subtema === parts[1]) {
+                                items.push(item);
+                            }
+                        }
+                    }
+                });
+                items.forEach(item => item.status = 'rejeitado');
+                showSuccess(`${items.length} necessidade(s) rejeitada(s)!`);
+            } else {
+                const item = necessidadesData.find(n => n.id === id);
+                if (item) {
+                    item.status = 'rejeitado';
+                    showSuccess('Necessidade rejeitada!');
+                }
+            }
+            renderTable();
+        }
+
+        // Ações de priorização para Gerente
+        function prioritizeGroupOrItem(type, id) {
+            if (type === 'group') {
+                let items = [];
+                // Procurar itens do grupo
+                necessidadesData.forEach(item => {
+                    // Se for um groupId customizado (inteiro)
+                    if (item.groupId && item.groupId === parseInt(id)) {
+                        items.push(item);
+                    } else if (!item.groupId) {
+                        // Se for um grupo automático (string com |)
+                        if (id.includes('|')) {
+                            const parts = id.split('|');
+                            if (item.tipo === 'transversal' && item.eixoTematico === parts[0] && item.tematica === parts[1]) {
+                                items.push(item);
+                            } else if (item.tipo === 'especifica' && item.temaGeral === parts[0] && item.subtema === parts[1]) {
+                                items.push(item);
+                            }
+                        }
+                    }
+                });
+                const allPrioritized = items.every(item => item.priorizado);
+                items.forEach(item => item.priorizado = !allPrioritized);
+                showSuccess(`${items.length} necessidade(s) ${!allPrioritized ? 'priorizada(s)' : 'despriorizada(s)'}!`);
+            } else {
+                const item = necessidadesData.find(n => n.id === id);
+                if (item) {
+                    item.priorizado = !item.priorizado;
+                    showSuccess(`Necessidade ${item.priorizado ? 'priorizada' : 'despriorizada'}!`);
+                }
+            }
+            renderTable();
+        }
+
+        // Funções de ação simples
+        function viewItem(id) {
+            const item = necessidadesData.find(n => n.id === id);
+            if (item) {
+                const details = item.tipo === 'transversal'
+                    ? `Eixo: ${item.eixoTematico}\nTemática: ${item.tematica}\nDuração: ${item.duracao}\nProficiência: ${item.proficiencia}`
+                    : `Tema: ${item.temaGeral}\nSubtema: ${item.subtema}\nConteúdo: ${item.conteudo}\nDuração: ${item.duracao}\nProficiência: ${item.proficiencia}`;
+                alert(`ID: ${item.id}\n${details}`);
+            }
+        }
+
+        function editItem(id) {
+            showSuccess(`Editando necessidade ID: ${id}`);
+        }
+
+        function deleteItem(id) {
+            if (confirm('Tem certeza que deseja excluir esta necessidade?')) {
+                necessidadesData = necessidadesData.filter(item => item.id !== id);
+                renderTable();
+                showSuccess('Necessidade excluída com sucesso!');
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        // Notificações
+        function showSuccess(message) {
+            const alert = document.createElement('div');
+            alert.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 24px;
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                z-index: 2000;
+                box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+                border-left: 4px solid #10b981;
+                animation: slideIn 0.3s ease;
+            `;
+            alert.innerHTML = `<i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i>${message}`;
+            document.body.appendChild(alert);
+
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        function showError(message) {
+            const alert = document.createElement('div');
+            alert.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 24px;
+                background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                z-index: 2000;
+                box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+                border-left: 4px solid #ef4444;
+                animation: slideIn 0.3s ease;
+            `;
+            alert.innerHTML = `<i class="fas fa-exclamation-circle" style="margin-right: 0.5rem;"></i>${message}`;
+            document.body.appendChild(alert);
+
+            setTimeout(() => alert.remove(), 4000);
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTable();
+        });
     </script>
 </body>
 </html>

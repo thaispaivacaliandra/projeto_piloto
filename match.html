@@ -386,6 +386,102 @@
         .priority-medium { background: #f59e0b; }
         .priority-low { background: #10b981; }
 
+        /* Theme Category Card */
+        .theme-category {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .theme-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #024248;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .theme-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .theme-courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card-compact {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card-compact:hover {
+            border-color: #4ECDC4;
+            box-shadow: 0 8px 30px rgba(78, 205, 196, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .course-title-compact {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #024248;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-description-compact {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .course-info-compact {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .course-link-btn {
+            padding: 0.7rem 1.5rem;
+            background: #007D7A;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .course-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+        }
+
         /* Course Cards */
         .course-card {
             border: 2px solid #e5e7eb;
@@ -456,23 +552,15 @@
         }
 
         .why-recommended {
-            background: #f0f9ff;
-            border: 1px solid #e0f2fe;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
+            display: none;
         }
 
         .why-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #024248;
-            margin-bottom: 0.5rem;
+            display: none;
         }
 
         .why-text {
-            font-size: 0.85rem;
-            color: #475569;
+            display: none;
         }
 
         .course-actions {
@@ -745,6 +833,10 @@
                 align-items: flex-end;
                 gap: 0.5rem;
             }
+
+            .theme-courses {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Loading Animation */
@@ -785,14 +877,6 @@
                 </a>
             </li>
             <li>
-                <a href="match.html" class="menu-item">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>Devolutivas</span>
-                    <span class="menu-badge">21</span>
-                    <i class="fas fa-chevron-right menu-arrow"></i>
-                </a>
-            </li>
-            <li>
                 <a href="tela02-v2.html" class="menu-item">
                     <i class="fas fa-tasks"></i>
                     <span>Gerenciar PDP</span>
@@ -801,10 +885,16 @@
             <li>
                 <a href="tela03-v2.html" class="menu-item">
                     <i class="fas fa-users"></i>
-                    <span>Cadastradar necessidade</span>
+                    <span>Cadastrar necessidade</span>
                 </a>
             </li>
-
+            <li>
+                <a href="match.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Devolutivas</span>
+                    <span class="menu-badge">21</span>
+                </a>
+            </li>
         </ul>
     </aside>
 
@@ -850,610 +940,359 @@
         <!-- Content Area -->
         <div class="content-area">
             <div class="content-container">
-                <!-- Welcome Section -->
-               
 
                 <!-- Main Content Grid -->
                 <div class="content-grid">
-                    <!-- Recommended Courses -->
-                    <!-- Recommended Courses -->
-<!-- Recommended Courses -->
-<div class="section-card">
-    <h2 class="section-title">
-        <div class="priority-icon priority-high">!</div>
-        Recomendações
-    </h2>
 
-     <!-- Course 3 -->
-     <div class="course-card">
-        <div class="course-header">
-            <div>
-                <div class="course-title">Planejamento Estratégico no Setor Público</div>
-                <div class="course-description">Desenvolva estratégias eficazes para a administração pública moderna</div>
-                <!-- Tag de Necessidade -->
-                <div style="margin-top: 0.5rem;">
-                    <span style="background: #fef3c7; color: #92400e; padding: 0.25rem 0.5rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
-                        <i class="fas fa-building" style="margin-right: 0.25rem;"></i>
-                        Administração Pública
-                    </span>
-                </div>
-            </div>
-            <div class="match-score">92% Match</div>
-        </div>
+                    <!-- Planejamento Estratégico Theme -->
+                    <div class="theme-category">
+                        <h2 class="theme-title">
+                            <div class="theme-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            Planejamento Estratégico no Setor Público
+                        </h2>
+                        <div class="theme-courses">
+                            <!-- Course 1 -->
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Planejamento Estratégico Aplicado</div>
+                                <div class="course-description-compact">Desenvolva estratégias eficazes para a administração pública moderna</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 25 horas</span>
+                                    <span>📊 Avançado</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/planejamento-estrategico" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar Curso
+                                </a>
+                            </div>
 
-        <div class="course-meta">
-            <div class="meta-item">
-                <span class="meta-icon">⏱️</span>
-                <span>25 horas</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">📊</span>
-                <span>Avançado</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">🎯</span>
-                <span>Aplicação Prática</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">🚀</span>
-                <span>Inovação Pública</span>
-            </div>
-        </div>
-
-        <div class="why-recommended">
-            <div class="why-title">Por que recomendamos para você:</div>
-            <div class="why-text">
-                Identificamos que você possui interesse em aprimorar conhecimentos sobre planejamento estratégico no setor público. Este curso oferece ferramentas práticas para implementar estratégias eficazes na administração pública.
-            </div>
-        </div>
-
-        <div class="course-actions">
-            <button class="btn btn-outline">Ver Detalhes</button>
-        </div>
-    </div>
-    
-    <!-- Course 1 -->
-    <div class="course-card">
-        <div class="course-header">
-            <div>
-                <div class="course-title">Análise de Sistemas Avançada</div>
-                <div class="course-description">Domine técnicas modernas de análise e modelagem de sistemas complexos</div>
-                <!-- Tag de Necessidade -->
-                <div style="margin-top: 0.5rem;">
-                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.25rem 0.5rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
-                        <i class="fas fa-laptop-code" style="margin-right: 0.25rem;"></i>
-                        Tecnologia da Informação
-                    </span>
-                </div>
-            </div>
-            <div class="match-score">98% Match</div>
-        </div>
-
-        <div class="course-meta">
-            <div class="meta-item">
-                <span class="meta-icon">⏱️</span>
-                <span>20 horas</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">📊</span>
-                <span>Avançado</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">🎯</span>
-                <span>Prática Intensiva</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">🏆</span>
-                <span>Certificação Técnica</span>
-            </div>
-        </div>
-
-        <div class="why-recommended">
-            <div class="why-title">Por que recomendamos para você:</div>
-            <div class="why-text">
-                Baseado no seu perfil na área de Tecnologia da Informação, este curso complementa suas habilidades em análise de sistemas, uma competência específica identificada como prioritária para seu desenvolvimento.
-            </div>
-        </div>
-
-        <div class="course-actions">
-            <button class="btn btn-outline">Ver Detalhes</button>
-        </div>
-    </div>
-
-    <!-- Course 2 -->
-    <div class="course-card">
-        <div class="course-header">
-            <div>
-                <div class="course-title">Gestão de Projetos Ágeis</div>
-                <div class="course-description">Metodologias ágeis e ferramentas para liderar projetos de alta performance</div>
-                <!-- Tag de Necessidade -->
-                <div style="margin-top: 0.5rem;">
-                    <span style="background: #f0fdf4; color: #166534; padding: 0.25rem 0.5rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
-                        <i class="fas fa-users-cog" style="margin-right: 0.25rem;"></i>
-                        Gestão e Administração
-                    </span>
-                </div>
-            </div>
-            <div class="match-score">95% Match</div>
-        </div>
-
-        <div class="course-meta">
-            <div class="meta-item">
-                <span class="meta-icon">⏱️</span>
-                <span>18 horas</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">📊</span>
-                <span>Intermediário</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">🎯</span>
-                <span>Cases Reais</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">📈</span>
-                <span>Scrum/Kanban</span>
-            </div>
-        </div>
-
-        <div class="why-recommended">
-            <div class="why-title">Por que recomendamos para você:</div>
-            <div class="why-text">
-                Com base na sua área de Gestão e Administração, este curso desenvolve competências essenciais em gestão de projetos, alinhando-se perfeitamente com suas necessidades de crescimento profissional.
-            </div>
-        </div>
-
-        <div class="course-actions">
-            <button class="btn btn-outline">Ver Detalhes</button>
-        </div>
-    </div>
-
-    <!-- Course 3 -->
-    <div class="course-card">
-        <div class="course-header">
-            <div>
-                <div class="course-title">Planejamento Estratégico no Setor Público</div>
-                <div class="course-description">Desenvolva estratégias eficazes para a administração pública moderna</div>
-                <!-- Tag de Necessidade -->
-                <div style="margin-top: 0.5rem;">
-                    <span style="background: #fef3c7; color: #92400e; padding: 0.25rem 0.5rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
-                        <i class="fas fa-building" style="margin-right: 0.25rem;"></i>
-                        Administração Pública
-                    </span>
-                </div>
-            </div>
-            <div class="match-score">92% Match</div>
-        </div>
-
-        <div class="course-meta">
-            <div class="meta-item">
-                <span class="meta-icon">⏱️</span>
-                <span>25 horas</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">📊</span>
-                <span>Avançado</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">🎯</span>
-                <span>Aplicação Prática</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">🚀</span>
-                <span>Inovação Pública</span>
-            </div>
-        </div>
-
-        <div class="why-recommended">
-            <div class="why-title">Por que recomendamos para você:</div>
-            <div class="why-text">
-                Identificamos que você possui interesse em aprimorar conhecimentos sobre planejamento estratégico no setor público. Este curso oferece ferramentas práticas para implementar estratégias eficazes na administração pública.
-            </div>
-        </div>
-
-        <div class="course-actions">
-            <button class="btn btn-outline">Ver Detalhes</button>
-        </div>
-    </div>
-
-    <!-- Course 4 -->
-    <div class="course-card">
-        <div class="course-header">
-            <div>
-                <div class="course-title">Liderança e Desenvolvimento de Equipes</div>
-                <div class="course-description">Desenvolva habilidades de liderança e gestão de pessoas de alto impacto</div>
-                <!-- Tag de Necessidade -->
-                <div style="margin-top: 0.5rem;">
-                    <span style="background: #f0fdf4; color: #166534; padding: 0.25rem 0.5rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
-                        <i class="fas fa-users-cog" style="margin-right: 0.25rem;"></i>
-                        Gestão e Administração
-                    </span>
-                </div>
-            </div>
-            <div class="match-score">90% Match</div>
-        </div>
-
-        <div class="course-meta">
-            <div class="meta-item">
-                <span class="meta-icon">⏱️</span>
-                <span>16 horas</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">📊</span>
-                <span>Intermediário</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">🎯</span>
-                <span>Soft Skills</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-icon">🏆</span>
-                <span>Certificação Liderança</span>
-            </div>
-        </div>
-
-        <div class="why-recommended">
-            <div class="why-title">Por que recomendamos para você:</div>
-            <div class="why-text">
-                Com base no seu perfil em Gestão e Administração, este curso fortalece suas competências em liderança e desenvolvimento de equipes, essenciais para o crescimento na carreira pública.
-            </div>
-        </div>
-
-        <div class="course-actions">
-            <button class="btn btn-outline">Ver Detalhes</button>
-        </div>
-    </div>
-</div>
-
-                    <!-- Right Sidebar -->
-                    <div>
-                        <!-- Study Plan -->
-                        <!-- Study Plan -->
-
-
-                        <!-- Skills Analysis -->
-                        
+                            <!-- Course 2 -->
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Gestão Estratégica Pública</div>
+                                <div class="course-description-compact">Implementação de estratégias efetivas no setor público</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 20 horas</span>
+                                    <span>📊 Avançado</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/gestao-estrategica-publica" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar Curso
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Additional Recommendations -->
-                <!-- Additional Recommendations -->
-<div class="section-card">
-    <h2 class="section-title">
-        <div class="priority-icon priority-medium">+</div>
-        Recomendações Adicionais
-    </h2>
-    
-    <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
-        <div class="course-card" style="margin-bottom: 0;">
-            <div class="course-header">
-                <div>
-                    <div class="course-title">Segurança da Informação</div>
-                    <div class="course-description">Proteja sistemas e dados críticos</div>
-                </div>
-                <div class="match-score">88% Match</div>
-            </div>
-            <div class="course-meta">
-                <div class="meta-item">⏱️ 15 horas</div>
-                <div class="meta-item">📊 Intermediário</div>
-            </div>
-            <div class="course-actions">
-                <button class="btn btn-outline">Adicionar ao Plano</button>
-            </div>
-        </div>
+                    <!-- Análise de Sistemas Theme -->
+                    <div class="theme-category">
+                        <h2 class="theme-title">
+                            <div class="theme-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            Análise de Sistemas Avançada
+                        </h2>
+                        <div class="theme-courses">
+                            <!-- Course 1 -->
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Análise e Modelagem de Sistemas</div>
+                                <div class="course-description-compact">Domine técnicas modernas de análise e modelagem de sistemas complexos</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 20 horas</span>
+                                    <span>📊 Avançado</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/analise-sistemas" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar Curso
+                                </a>
+                            </div>
 
-        <div class="course-card" style="margin-bottom: 0;">
-            <div class="course-header">
-                <div>
-                    <div class="course-title">Gestão Financeira Pública</div>
-                    <div class="course-description">Orçamento e finanças no setor público</div>
-                </div>
-                <div class="match-score">85% Match</div>
-            </div>
-            <div class="course-meta">
-                <div class="meta-item">⏱️ 20 horas</div>
-                <div class="meta-item">📊 Avançado</div>
-            </div>
-            <div class="course-actions">
-                <button class="btn btn-outline">Adicionar ao Plano</button>
-            </div>
-        </div>
+                            <!-- Course 2 -->
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Arquitetura de Sistemas Corporativos</div>
+                                <div class="course-description-compact">Projete sistemas escaláveis e robustos para empresas</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 22 horas</span>
+                                    <span>📊 Avançado</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/arquitetura-sistemas" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar Curso
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="course-card" style="margin-bottom: 0;">
-            <div class="course-header">
-                <div>
-                    <div class="course-title">Comunicação Organizacional</div>
-                    <div class="course-description">Melhore a comunicação interna e externa</div>
-                </div>
-                <div class="match-score">82% Match</div>
-            </div>
-            <div class="course-meta">
-                <div class="meta-item">⏱️ 12 horas</div>
-                <div class="meta-item">📊 Básico/Intermediário</div>
-            </div>
-            <div class="course-actions">
-                <button class="btn btn-outline">Adicionar ao Plano</button>
-            </div>
-        </div>
+                    <!-- Gestão de Projetos Theme -->
+                    <div class="theme-category">
+                        <h2 class="theme-title">
+                            <div class="theme-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            Gestão de Projetos Ágeis
+                        </h2>
+                        <div class="theme-courses">
+                            <!-- Course 1 -->
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Metodologias Ágeis Essenciais</div>
+                                <div class="course-description-compact">Metodologias ágeis e ferramentas para liderar projetos</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 18 horas</span>
+                                    <span>📊 Intermediário</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/metodologias-ageis" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar Curso
+                                </a>
+                            </div>
 
-        <div class="course-card" style="margin-bottom: 0;">
-            <div class="course-header">
-                <div>
-                    <div class="course-title">Gerenciamento de Banco de Dados</div>
-                    <div class="course-description">Administre e otimize bases de dados</div>
-                </div>
-                <div class="match-score">80% Match</div>
-            </div>
-            <div class="course-meta">
-                <div class="meta-item">⏱️ 18 horas</div>
-                <div class="meta-item">📊 Intermediário</div>
-            </div>
-            <div class="course-actions">
-                <button class="btn btn-outline">Adicionar ao Plano</button>
-            </div>
-        </div>
+                            <!-- Course 2 -->
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Scrum e Kanban na Prática</div>
+                                <div class="course-description-compact">Implementação prática de Scrum e Kanban em projetos reais</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 16 horas</span>
+                                    <span>📊 Intermediário</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/scrum-kanban" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar Curso
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="course-card" style="margin-bottom: 0;">
-            <div class="course-header">
-                <div>
-                    <div class="course-title">Gestão de Processos</div>
-                    <div class="course-description">Otimize e automatize processos organizacionais</div>
-                </div>
-                <div class="match-score">78% Match</div>
-            </div>
-            <div class="course-meta">
-                <div class="meta-item">⏱️ 14 horas</div>
-                <div class="meta-item">📊 Intermediário</div>
-            </div>
-            <div class="course-actions">
-                <button class="btn btn-outline">Adicionar ao Plano</button>
-            </div>
-        </div>
+                    <!-- Liderança Theme -->
+                    <div class="theme-category">
+                        <h2 class="theme-title">
+                            <div class="theme-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            Liderança e Desenvolvimento de Equipes
+                        </h2>
+                        <div class="theme-courses">
+                            <!-- Course 1 -->
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Liderança de Pessoas</div>
+                                <div class="course-description-compact">Desenvolva habilidades de liderança e gestão de pessoas de alto impacto</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 16 horas</span>
+                                    <span>📊 Intermediário</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/lideranca-pessoas" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar Curso
+                                </a>
+                            </div>
 
-        <div class="course-card" style="margin-bottom: 0;">
-            <div class="course-header">
-                <div>
-                    <div class="course-title">Arquitetura de Sistemas</div>
-                    <div class="course-description">Projete sistemas escaláveis e robustos</div>
-                </div>
-                <div class="match-score">75% Match</div>
-            </div>
-            <div class="course-meta">
-                <div class="meta-item">⏱️ 22 horas</div>
-                <div class="meta-item">📊 Avançado</div>
-            </div>
-            <div class="course-actions">
-                <button class="btn btn-outline">Adicionar ao Plano</button>
-            </div>
-        </div>
+                            <!-- Course 2 -->
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Gestão de Equipes de Alto Desempenho</div>
+                                <div class="course-description-compact">Construa e gerencie equipes produtivas e engajadas</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 14 horas</span>
+                                    <span>📊 Intermediário</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/equipes-alto-desempenho" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar Curso
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="course-card" style="margin-bottom: 0;">
-            <div class="course-header">
-                <div>
-                    <div class="course-title">Análise e Interpretação de Dados</div>
-                    <div class="course-description">Transforme dados em insights estratégicos</div>
-                </div>
-                <div class="match-score">73% Match</div>
-            </div>
-            <div class="course-meta">
-                <div class="meta-item">⏱️ 16 horas</div>
-                <div class="meta-item">📊 Intermediário</div>
-            </div>
-            <div class="course-actions">
-                <button class="btn btn-outline">Adicionar ao Plano</button>
-            </div>
-        </div>
+                    <!-- Outros Cursos Complementares -->
+                    <div class="section-card">
+                        <h2 class="section-title">
+                            <div class="priority-icon priority-medium">+</div>
+                            Outras Recomendações Complementares
+                        </h2>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Segurança da Informação</div>
+                                <div class="course-description-compact">Proteja sistemas e dados críticos</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 15 horas</span>
+                                    <span>📊 Intermediário</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/seguranca-informacao" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar
+                                </a>
+                            </div>
 
-        <div class="course-card" style="margin-bottom: 0;">
-            <div class="course-header">
-                <div>
-                    <div class="course-title">DevOps e Infraestrutura</div>
-                    <div class="course-description">Automatize deploy e infraestrutura</div>
-                </div>
-                <div class="match-score">70% Match</div>
-            </div>
-            <div class="course-meta">
-                <div class="meta-item">⏱️ 24 horas</div>
-                <div class="meta-item">📊 Avançado</div>
-            </div>
-            <div class="course-actions">
-                <button class="btn btn-outline">Adicionar ao Plano</button>
-            </div>
-        </div>
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Gestão Financeira Pública</div>
+                                <div class="course-description-compact">Orçamento e finanças no setor público</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 20 horas</span>
+                                    <span>📊 Avançado</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/gestao-financeira-publica" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar
+                                </a>
+                            </div>
 
-        <div class="course-card" style="margin-bottom: 0;">
-            <div class="course-header">
-                <div>
-                    <div class="course-title">Desenvolvimento de Software</div>
-                    <div class="course-description">Metodologias e boas práticas de desenvolvimento</div>
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Comunicação Organizacional</div>
+                                <div class="course-description-compact">Melhore a comunicação interna e externa</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 12 horas</span>
+                                    <span>📊 Básico</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/comunicacao-organizacional" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar
+                                </a>
+                            </div>
+
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Gerenciamento de Banco de Dados</div>
+                                <div class="course-description-compact">Administre e otimize bases de dados</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 18 horas</span>
+                                    <span>📊 Intermediário</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/banco-dados" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar
+                                </a>
+                            </div>
+
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Gestão de Processos</div>
+                                <div class="course-description-compact">Otimize e automatize processos organizacionais</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 14 horas</span>
+                                    <span>📊 Intermediário</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/gestao-processos" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar
+                                </a>
+                            </div>
+
+                            <div class="course-card-compact">
+                                <div class="course-title-compact">Análise de Dados</div>
+                                <div class="course-description-compact">Transforme dados em insights estratégicos</div>
+                                <div class="course-info-compact">
+                                    <span>⏱️ 16 horas</span>
+                                    <span>📊 Intermediário</span>
+                                </div>
+                                <a href="https://exemplo.com/curso/analise-dados" class="course-link-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Acessar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="match-score">68% Match</div>
-            </div>
-            <div class="course-meta">
-                <div class="meta-item">⏱️ 30 horas</div>
-                <div class="meta-item">📊 Intermediário/Avançado</div>
-            </div>
-            <div class="course-actions">
-                <button class="btn btn-outline">Adicionar ao Plano</button>
-            </div>
-        </div>
-    </div>
-</div>
             </div>
         </div>
     </main>
 
     <script>
         // Funções de navegação
-        // Funções de navegação
-function goBack() {
-    console.log('Voltar');
-    alert('Voltando para a página anterior...');
-}
+        function goBack() {
+            console.log('Voltar');
+            alert('Voltando para a página anterior...');
+        }
 
-function goToHome() {
-    console.log('Ir para Home');
-    alert('Redirecionando para Home...');
-}
+        function goToHome() {
+            console.log('Ir para Home');
+            alert('Redirecionando para Home...');
+        }
 
-function goToActivities() {
-    console.log('Ir para Atividades');
-    alert('Redirecionando para Atividades...');
-}
+        function goToActivities() {
+            console.log('Ir para Atividades');
+            alert('Redirecionando para Atividades...');
+        }
 
-// Funções do menu lateral
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.querySelector('.sidebar-overlay');
-    
-    sidebar.classList.toggle('open');
-    overlay.classList.toggle('active');
-}
-
-function closeSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.querySelector('.sidebar-overlay');
-    
-    sidebar.classList.remove('open');
-    overlay.classList.remove('active');
-}
-
-// Interactive functions (prototype)
-function startCourse(courseName) {
-    alert(`Iniciando curso: ${courseName}\n\nEm um sistema real, isso redirecionaria para a plataforma de aprendizado.`);
-}
-
-function viewDetails(courseName) {
-    alert(`Detalhes do curso: ${courseName}\n\nEm um sistema real, isso abriria um modal com informações completas do curso.`);
-}
-
-function addToPlan(courseName) {
-    alert(`Curso "${courseName}" adicionado ao seu plano!\n\nEm um sistema real, isso atualizaria seu cronograma de estudos.`);
-}
-
-// Inicialização principal
-document.addEventListener('DOMContentLoaded', function() {
-    // SETUP DO MENU LATERAL
-    const menuItems = document.querySelectorAll('.menu-item');
-    menuItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            // Verifica se o item tem href válido
-            const href = this.getAttribute('href');
+        // Funções do menu lateral
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
             
-            // Se não tem href ou href é #, previne o comportamento padrão
-            if (!href || href === '#') {
-                e.preventDefault();
-            }
-            // Se tem href válido (.html), deixa navegar normalmente
-            
-            // Remove active class from all items
-            menuItems.forEach(i => i.classList.remove('active'));
-            
-            // Add active class to clicked item
-            this.classList.add('active');
-            
-            // Handle arrow rotation for expandable items
-            const arrow = this.querySelector('.menu-arrow');
-            if (arrow) {
-                this.classList.toggle('expanded');
-            }
-        });
-    });
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
 
-    // BUSCA NO SIDEBAR
-    const searchInput = document.querySelector('.sidebar-search input');
-    if (searchInput) {
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        // Inicialização principal
+        document.addEventListener('DOMContentLoaded', function() {
+            // SETUP DO MENU LATERAL
             const menuItems = document.querySelectorAll('.menu-item');
-            
             menuItems.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                const parentLi = item.parentElement;
+                item.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (!href || href === '#') {
+                        e.preventDefault();
+                    }
+                    
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const arrow = this.querySelector('.menu-arrow');
+                    if (arrow) {
+                        this.classList.toggle('expanded');
+                    }
+                });
+            });
+
+            // BUSCA NO SIDEBAR
+            const searchInput = document.querySelector('.sidebar-search input');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const menuItems = document.querySelectorAll('.menu-item');
+                    
+                    menuItems.forEach(item => {
+                        const text = item.textContent.toLowerCase();
+                        const parentLi = item.parentElement;
+                        
+                        if (text.includes(searchTerm)) {
+                            parentLi.style.display = 'block';
+                            item.style.opacity = '1';
+                        } else {
+                            parentLi.style.display = searchTerm ? 'none' : 'block';
+                            item.style.opacity = searchTerm ? '0.5' : '1';
+                        }
+                    });
+                });
+            }
+
+            // Animações de entrada
+            const elements = document.querySelectorAll('.theme-category, .section-card');
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
                 
-                if (text.includes(searchTerm)) {
-                    parentLi.style.display = 'block';
-                    item.style.opacity = '1';
-                } else {
-                    parentLi.style.display = searchTerm ? 'none' : 'block';
-                    item.style.opacity = searchTerm ? '0.5' : '1';
-                }
+                setTimeout(() => {
+                    element.style.transition = 'all 0.6s ease';
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 150);
             });
         });
-    }
 
-    // Animate skill bars
-    setTimeout(() => {
-        const skillBars = document.querySelectorAll('.skill-progress');
-        skillBars.forEach(bar => {
-            const width = bar.style.width;
-            bar.style.width = '0%';
-            setTimeout(() => {
-                bar.style.width = width;
-            }, 500);
+        // Fechar sidebar ao clicar fora em mobile
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 768) {
+                if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+                    closeSidebar();
+                }
+            }
         });
-    }, 1000);
 
-    // Simulate real-time updates
-    setInterval(() => {
-        const matchScores = document.querySelectorAll('.match-score');
-        matchScores.forEach(score => {
-            score.classList.add('pulse');
-            setTimeout(() => score.classList.remove('pulse'), 2000);
+        // Responsividade - ajustar sidebar em resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.querySelector('.sidebar-overlay');
+                
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            }
         });
-    }, 10000);
-
-    // Add click handlers to buttons
-    document.querySelectorAll('.btn-primary').forEach(btn => {
-        if (btn.textContent === 'Iniciar Curso') {
-            btn.onclick = () => startCourse(btn.closest('.course-card').querySelector('.course-title').textContent);
-        }
-    });
-
-    document.querySelectorAll('.btn-outline').forEach(btn => {
-        if (btn.textContent === 'Ver Detalhes') {
-            btn.onclick = () => viewDetails(btn.closest('.course-card').querySelector('.course-title').textContent);
-        } else if (btn.textContent === 'Adicionar ao Plano') {
-            btn.onclick = () => addToPlan(btn.closest('.course-card').querySelector('.course-title').textContent);
-        }
-    });
-
-    // Animações de entrada
-    const elements = document.querySelectorAll('.welcome-section, .section-card');
-    elements.forEach((element, index) => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        
-        setTimeout(() => {
-            element.style.transition = 'all 0.6s ease';
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }, index * 150);
-    });
-});
-
-// Fechar sidebar ao clicar fora em mobile
-document.addEventListener('click', function(e) {
-    const sidebar = document.getElementById('sidebar');
-    const toggle = document.querySelector('.mobile-menu-toggle');
-    
-    if (window.innerWidth <= 768) {
-        if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
-            closeSidebar();
-        }
-    }
-});
-
-// Responsividade - ajustar sidebar em resize
-window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.querySelector('.sidebar-overlay');
-        
-        sidebar.classList.remove('open');
-        overlay.classList.remove('active');
-    }
-});
     </script>
 </body>
 </html>
